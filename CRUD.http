@@ -1,0 +1,23 @@
+###
+POST http://localhost:4004/api/v2/srv/ZCLAIMAPPROVALSRV/ClaimSet
+Content-Type: application/json
+
+{
+"claimNo": "233232"
+}
+
+###
+POST https://cnh-industrial-italia-s-p-a--societ--a-socio-unico-deve50a1708a.cfapps.eu10-004.hana.ondemand.com/api/v2/srv/ZPRAPPROVALSRV/ClaimSet
+Content-Type: application/json
+
+{
+"claimNo": "233232"
+}
+
+### DELETE ####
+
+DELETE https://cnh-industrial-italia-s-p-a--societ--a-socio-unico-deve50a1708a.cfapps.eu10-004.hana.ondemand.com/api/v2/srv/ZCLAIMAPPROVALSRV/ClaimSet/c0403623-bd8e-41ed-8c13-4d25e84ed71b
+
+### DELETE ####
+
+DELETE https://cnh-industrial-italia-s-p-a--societ--a-socio-unico-deve50a1708a.cfapps.eu10-004.hana.ondemand.com/api/v2/srv/ZCLAIMAPPROVALSRV/CommentSet/92787a38-5bca-460c-9c68-0cdf551058f5
