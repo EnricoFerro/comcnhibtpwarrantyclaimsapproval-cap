@@ -1,0 +1,20 @@
+[
+    {
+        "DefectCode": "Defect1",
+        "TotalParts": "1",
+        "TotalLabor": "1",
+        "TotalOther": "1",
+        "TotalAdd": "1",
+        "Curr": "PZ",
+        "TotalFail": "1",
+        "DoaLevel": "100",
+        "Warranty": "X",
+        "Decision": "Replace",
+        "DecisionText": "ReplaceAll",
+        "Service": "REP",
+        "__metadata": {
+            "type": "WarrantyService.DefectSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/DefectSet('Defect1')"
+        }
+    }
+]

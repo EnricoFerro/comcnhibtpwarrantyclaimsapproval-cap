@@ -1,0 +1,51 @@
+<core:FragmentDefinition 	
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+    xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form" 
+    xmlns="sap.m">
+    <Dialog title ="Detail of Defect {LocalModel>DefectCode}" contentWidth="50em"  busyIndicatorDelay="0" class="sapUiSizeCompact">
+        <VBox class="sapUiTinyMargin" >
+                <f:Form id="forDefect"
+                    editable="false">
+                    <f:layout>
+                        <f:ResponsiveGridLayout
+                            labelSpanXL="2"
+                            labelSpanL="2"
+                            labelSpanM="2"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer formElements="{LocalModel>DefectExposed/results}">
+                            <f:formElements>
+                                <f:FormElement label="{LocalModel>Label}">
+                                    <f:fields>
+                                        <Text text="{LocalModel>Content}">
+                                            <layoutData>
+                                            		<l:GridData span="L1 M2 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Text text="{LocalModel>Description}" />
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+                            
+        </VBox>
+        <endButton>
+            <Button text="Close" press="onDefectDetailClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

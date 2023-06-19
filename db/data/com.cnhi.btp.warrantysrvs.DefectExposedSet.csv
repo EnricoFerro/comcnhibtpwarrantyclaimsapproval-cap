@@ -1,0 +1,5 @@
+DefectCode;Counter;Label;Content;Description
+000MANDATORYF0;1;Supplier;000;Supplier Default
+000MANDATORYF0;2;Failure Code;MANDATORY;Fallimento Obbligatorio
+000MANDATORYF0;3;Break;F;Fallimento critico
+000MANDATORYF0;4;Fault Severity;0;N/A

@@ -1,0 +1,580 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cnhi.btp.warrantyclaimsrequestor.controller.Detail"
+	xmlns:ui="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:commons="sap.suite.ui.commons"
+    xmlns:uxap="sap.uxap"
+	xmlns="sap.m"
+	height="100%">
+    <uxap:ObjectPageLayout id="ObjectPageLayout"  headerContentPinned="false" showTitleInHeaderContent="true" upperCaseAnchorBar="false" showFooter="{= (${LocalModel>CAPMStatusCode} &amp;&amp; ${LocalModel>CAPMStatusCode} === 'C') ? false : true}" >
+    
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title text="{i18n>claimNo}{LocalModel>Clmno}" />
+                </uxap:expandedHeading>
+
+                <uxap:expandedContent>
+                    <ObjectAttribute title="{i18n>wtyClaimType}" text="{LocalModel>Wtype} - {LocalModel>WtypeText}" />
+				</uxap:expandedContent>
+                <uxap:snappedHeading>
+						<FlexBox fitContainer="true" alignItems="Center">
+							<Title text="{i18n>claimNo}{LocalModel>Clmno}" />
+						</FlexBox>
+			    </uxap:snappedHeading>
+                <uxap:snappedContent>
+                    <ObjectAttribute title="{i18n>wtyClaimType}" text="{LocalModel>Wtype} - {LocalModel>WtypeText}" />
+				</uxap:snappedContent>
+				<uxap:snappedTitleOnMobile>
+					<Title text="{i18n>claimNo}{LocalModel>Clmno}" />
+				</uxap:snappedTitleOnMobile>
+
+                <uxap:actions>
+					<!--<Button text="Edit" press="onBtnEditPressed"/>
+					<Button text="Delete" press="onBtnDeletePressed" />-->
+				</uxap:actions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+    
+        <uxap:headerContent>
+            <FlexBox wrap="Wrap" fitContainer="false">
+                <l:VerticalLayout class="sapUiLargeMarginEnd">
+                    <ObjectStatus title="{i18n>society}" text="{LocalModel>Vkorg} - {LocalModel>VkorgText}" class="sapUiTinyMarginTopBottom"/>
+                    <ObjectStatus title="{i18n>comOrg}" text="{LocalModel>Bukrs} - {LocalModel>BukrsText}"  class="sapUiTinyMarginTopBottom"/>
+                </l:VerticalLayout>
+                 <l:VerticalLayout class="sapUiLargeMarginBeginEnd">
+                    <ObjectStatus title="{i18n>objetoRef}" text="{LocalModel>ObjRef}" class="sapUiTinyMarginTopBottom"/>
+                    <ObjectStatus title="{i18n>workFlowStatus}" text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" class="sapUiTinyMarginTopBottom"/>
+                </l:VerticalLayout>
+            </FlexBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_ClaimInfo}"
+            >
+            <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <f:SimpleForm
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="2"
+                            columnsM="1"
+                            singleContainerFullSize="false"
+                        >
+                            <f:content>
+                                <core:Title text="" />
+                                <Label text="{i18n>partner}" />
+                                <Text text="{LocalModel>Partner}" />
+                                <Label text="{i18n>partnerDesc}" />
+                                <Text text="{LocalModel>PartnerText}" />
+                                <Label text="{i18n>jobOrder}" />
+                                <Text text="{LocalModel>jobOrder}" />
+                                <Label text="{i18n>failureDate}" />
+                                <Text
+                                    text="{path: 'LocalModel>FailureDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                />
+                                <Label text="{i18n>repairStartDate}" />
+                                <Text
+                                    text="{path: 'LocalModel>RepairStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                />
+                                <Label text="{i18n>repairEndDate}" />
+                                <Text
+                                    text="{path: 'LocalModel>RepairEnd', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                />
+                                <Label text="{i18n>subDate}" />
+                                <Text
+                                    text="{path: 'LocalModel>SubDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                />
+
+                                <!-- <Label text="{i18n>decision}" />
+                                                <Text text="{LocalModel>Decision}" /> -->
+                                <core:Title text="" />
+                                <Label text="{i18n>vin}" />
+                                <Text text="{LocalModel>Vin}" />
+                                <!-- <Label text="{i18n>defectCode}" />
+                                                <Text text="{LocalModel>DefectCode}" /> -->
+                                <Label text="{i18n>vehicle}" />
+                                <Text text="{LocalModel>Vehicle}" />
+                                <Label text="{i18n>modelDef}" />
+                                <Text text="{LocalModel>ModelDef}" />
+                                <Label text="{i18n>manDate}" />
+                                <Text
+                                    text="{path: 'LocalModel>ManDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                />
+                                <Label text="{i18n>Usage}" />
+                                <Text text="{LocalModel>Km}" />
+                                <Label text="{i18n>curr}" />
+                                <Text text="{LocalModel>Curr}" />
+                                <Label text="{i18n>total}" />
+                                <Text text="{LocalModel>Total}" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_Failure}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection 
+                        title="{i18n>Detail_OBS_Title_FailureSummary}"
+                        titleUppercase="false">
+
+                        <VBox>
+                        <Table  items="{LocalModel>DefectList}" autoPopinMode="true" visible="{device>/system/phone}">
+                            <columns>
+                                <Column hAlign="Begin" width="2em">
+                                    <Text text="Items"  visible="false"/>
+                                </Column>
+                                <Column hAlign="Begin"  width="10em">
+                                    <Text text="{i18n>defectCode}" />
+                                </Column>
+                                 <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>totalMat}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>totalLab}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>totalOther}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>totalExt}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>totalFail}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>doaLevel}" />
+                                </Column>
+                                <Column hAlign="Center"  width="10em">
+                                    <Text text="{i18n>warrantyType}" />
+                                </Column>
+                                <Column hAlign="Center"  width="10em">
+                                    <Text text="{i18n>decition}" />
+                                </Column>
+                                <Column hAlign="Center"  width="10em">
+                                    <Text text="{i18n>srvPar}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Inactive"  press="onListItemPress" >
+                                    <cells>
+                                        <core:Icon src="sap-icon://information" width="1em" class="sapMLnk" tooltip="Open Item Detail" press="onItemDetailOpen"></core:Icon>
+                                        <Link text="{LocalModel>DefectCode}" press="onDefectDetailOpen" wrapping="false" />
+                                        <Text text="{LocalModel>TotalParts} {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>TotalLabor}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>TotalOther}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>TotalAdd}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>totalFail}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>DoaLevel}" wrapping="false" />
+                                        <Text text="{LocalModel>Warranty}" wrapping="false" />
+                                        <Text text="{LocalModel>DecisionText} ({LocalModel>Decision})" wrapping="false" />
+                                        <Text text="{LocalModel>Service}" wrapping="false" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <ui:Table visible="{= ${device>/system/phone} === false}" id="idDefectTbl" busyIndicatorDelay="0" rows="{LocalModel>DefectList}" visibleRowCount="5" selectionMode="None">
+                            <ui:columns>
+                                <ui:Column width="2em" visible="false">
+                                    <Label text="" visible="false"/>
+                                    <ui:template>
+                                        <core:Icon src="sap-icon://information"  class="sapMLnk" tooltip="Open Item Detail" press="onItemDetailOpen"></core:Icon>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>defectCode}" />
+                                    <ui:template>
+                                        <Link text="{LocalModel>DefectCode}" press="onDefectDetailOpen" wrapping="false" />
+                                        <!--<Text text="{LocalModel>DefectCode}" wrapping="false" />-->
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="7em">
+                                    <Label text="{i18n>totalMat}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalParts}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="7em">
+                                    <Label text="{i18n>totalLab}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalLabor}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="7em">
+                                    <Label text="{i18n>totalOther}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalOther}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="8em">
+                                    <Label text="{i18n>totalExt}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalAdd}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="5em">
+                                    <Label text="{i18n>currency}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Curr}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="5em">
+                                    <Label text="{i18n>totalFail}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalFail}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="7em">
+                                    <Label text="{i18n>doaLevel}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>DoaLevel}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>warrantyType}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Warranty}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>decition}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>DecisionText} ({LocalModel>Decision})" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>srvPar}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Service}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                            </ui:columns>
+                        </ui:Table>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                     <uxap:ObjectPageSubSection 
+                        title="{i18n>Detail_OBS_Title_FailureVersion}"
+                        titleUppercase="false">
+                        
+                        <VBox>
+                        <Table  items="{LocalModel>DefectVersionList}" autoPopinMode="true" visible="{device>/system/phone}">
+                            <columns>
+                                <Column hAlign="Begin"  width="10em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_DefectCode}" />
+                                </Column>
+                                 <Column hAlign="Center"  width="5.5em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_Warranty}" />
+                                </Column>
+                                <Column hAlign="Center"  width="5.5em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_ItemType}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_Matnr}" />
+                                </Column>
+                                <Column hAlign="Center"  width="5.5em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_Menge}" />
+                                </Column>
+                                <Column hAlign="Center"  width="5.5em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_TotalAmount}" />
+                                </Column>
+                                <Column hAlign="Center"  width="7em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_TotalApproved}" />
+                                </Column>
+                                <Column hAlign="Center"  width="6em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_Decision}" />
+                                </Column>
+                                <Column hAlign="Center"  width="10em">
+                                    <Text text="{i18n>Detail_TBL_DefectVersion_Lbl_Service}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Inactive"  press="onListItemPress" >
+                                    <cells>
+                                        <Link text="{LocalModel>DefectCode}" press="onDefectDetailOpen" wrapping="false" />
+                                        <Text text="{LocalModel>Warranty}" wrapping="false" />
+                                        <Text text="{LocalModel>ItemType}" wrapping="false" />
+                                        <Text text="{LocalModel>Matnr} - {LocalModel>Maktx}" wrapping="false" />
+                                        <Text text="{LocalModel>Menge} {LocalModel>Meins}" wrapping="false" />
+                                        <Text text="{LocalModel>TotalAmount}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>TotalApproved}  {LocalModel>Curr}" wrapping="false" />
+                                        <Text text="{LocalModel>DecisionText} ({LocalModel>Decision})" wrapping="false" />
+                                        <Text text="{LocalModel>Service}" wrapping="false" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <ui:Table visible="{= ${device>/system/phone} === false}"  busyIndicatorDelay="0" rows="{LocalModel>DefectVersionList}" visibleRowCount="5" selectionMode="None">
+                            <ui:columns>
+                                <!--<ui:Column width="2em">
+                                    <Label text="" visible="false"/>
+                                    <ui:template>
+                                        <core:Icon src="sap-icon://information"  class="sapMLnk" tooltip="Open Item Detail" press="onItemDetailOpen"></core:Icon>
+                                    </ui:template>
+                                </ui:Column>-->
+                                <ui:Column width="5.5em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Warranty}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Warranty}" wrapping="false" />
+                                        <!--<Text text="{LocalModel>DefectCode}" wrapping="false" />-->
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_DefectCode}" />
+                                    <ui:template>
+                                        <Link text="{LocalModel>DefectCode}" press="onDefectDetailOpen" wrapping="false" />
+                                        <!--<Text text="{LocalModel>DefectCode}" wrapping="false" />-->
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="5.5em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_ItemType}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>ItemType}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="12em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Matnr}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Matnr} - {LocalModel>Maktx}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="5.5em" hAlign="End">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Menge}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Menge}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="3.5em" hAlign="Begin">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Meins}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Meins}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="8em" hAlign="End">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_TotalAmount}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalAmount}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="8em" hAlign="End">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_TotalApproved}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>TotalApproved}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="5em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Curr}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Curr}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Decision}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>DecisionText} ({LocalModel>Decision})" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column width="10em">
+                                    <Label text="{i18n>Detail_TBL_DefectVersion_Lbl_Service}" />
+                                    <ui:template>
+                                        <Text text="{LocalModel>Service}" wrapping="false" />
+                                    </ui:template>
+                                </ui:Column>
+                            </ui:columns>
+                        </ui:Table>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{LocalModel>Astate}"
+                 visible="{= ${LocalModel>CAPMStatusCode} === 'A' || ${LocalModel>CAPMStatusCode} === 'C' ? true : false}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <!--<Title text="{LocalModel>Astate}" visible="{= ${LocalModel>CAPMStatusCode} === 'C' ? true : false}" />-->
+                        <Select visible="{= ${LocalModel>CAPMStatusCode} === 'A' ? true : false}" forceSelection="false" class="sapUiSmallMarginTop" showSecondaryValues= "true" selectedKey="{LocalModel>selProcess}" items="{LocalModel>/Actions}"  width="20%">
+                            <core:ListItem additionalText="{LocalModel>Acode}" text="{LocalModel>Description}" key="{LocalModel>Acode}" />
+                        </Select>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_ApprovalSequence}" visible="{= ${LocalModel>IsRequestor} ? true : false}">
+                 <uxap:ObjectPageSubSection titleUppercase="false">
+                 <VBox>
+                    <Table id="idNextApproverTbl" inset="false" mode="SingleSelectLeft" 
+                    items="{
+                        path: 'LocalModel>NextApprovers'
+                    }">
+                        <headerToolbar>
+                            <Toolbar>
+                                <ToolbarSpacer />
+                                <Button icon="sap-icon://clear-all" text="Clear" tooltip="Clear Selection" press="onClearTblSel" />
+                                <FlexBox>
+                                    <Button icon="sap-icon://collapse-group" press="onChangeNextApprSeq" >
+                                        <customData>
+                                            <core:CustomData key="move" value="top"/>
+                                        </customData>
+                                    </Button>
+                                    <Button class="sapUiTinyMarginBegin" icon="sap-icon://navigation-up-arrow" press="onChangeNextApprSeq" >
+                                        <customData>
+                                            <core:CustomData key="move" value="oneAbove"/>
+                                        </customData>
+                                    </Button>
+                                    <Button class="sapUiTinyMarginBegin" icon="sap-icon://navigation-down-arrow" press="onChangeNextApprSeq" >
+                                        <customData>
+                                            <core:CustomData key="move" value="oneBelow"/>
+                                        </customData>
+                                    </Button>
+                                    <Button class="sapUiTinyMarginBegin" icon="sap-icon://expand-group" press="onChangeNextApprSeq" >
+                                        <customData>
+                                            <core:CustomData key="move" value="last"/>
+                                        </customData>
+                                    </Button>
+                                </FlexBox>
+                                <Button icon="sap-icon://add-employee" text="Add" press="onAddNextApprover" />
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="6em">
+                                <Text text="{i18n>Detail_TBL_ApprovalSequence_COL_Sequence}" />
+                            </Column>
+                            <Column>
+                                <Text text="{i18n>Detail_TBL_ApprovalSequence_COL_Email}" />
+                            </Column>
+                            <Column hAlign="Center" width="3em">
+                                <Text text="" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{LocalModel>level}" />
+                                    <Input value="{LocalModel>email}" change="onChangeEmail"/>
+                                    <core:Icon src="sap-icon://delete" color="#e81a0c" press="onDeleteRow" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <commons:ProcessFlow
+                        id="processflow"
+                        lanes="{LocalModel>NextApprovers}" visible="{LocalModel>/showProcessFlow}" >
+                        <commons:lanes>
+                            <commons:ProcessFlowLaneHeader
+                                state="{LocalModel>state}"
+                                laneId="{LocalModel>id}"
+                                iconSrc="{LocalModel>icon}"
+                                tooltip="{LocalModel>email}"
+                                text="Level {LocalModel>level} ({LocalModel>email})"
+                                position="{LocalModel>position}" />
+                        </commons:lanes>
+                    </commons:ProcessFlow>
+                    </VBox>
+                 </uxap:ObjectPageSubSection>
+                <uxap:subSections>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_Comment}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <TextArea width="{= ${device>/system/phone} ? '100%' : '50%' }" growing="true" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_WorkflowHistory}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">                 
+                        <List
+                            showSeparators="Inner"
+                            items="{path: 'LocalModel>Comments', sorter : {path : 'createdAt', descending: true }}">
+                            <FeedListItem
+                                timestamp="{path: 'LocalModel>createdAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: {pattern: 'yyyy-MM-ddTHH:mm:ss.SSSX'}, style: 'long'}}"
+                                sender="{LocalModel>authorName}"
+                                senderPress="onSenderPress"
+                                info="{= ${LocalModel>type} === 'A' ? 'Approved' : ${LocalModel>type} === 'S' ? 'Submitted': ${LocalModel>type} === 'R' ? 'Rejected' : 'Saved'}"
+                                text="{LocalModel>comment}"
+                                convertLinksToAnchorTags="All"/>
+                        </List>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                titleUppercase="false"
+                title="{i18n>Detail_OBS_Title_Attachments}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <List id="idListAttachments"
+                        showSeparators="Inner">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <u:FileUploader useMultipart="false" id="__fileUploader" tooltip="{i18n>Detail_TBL_Attachment_FLU_Tooltip}" uploadAborted="onUploadAborted" uploadProgress="onAttachmentFileUploadProgress" uploadComplete="onAttachmentFileUploadComplete" change="onAttachmentFileChange"/>
+                                    <Button text="{i18n>Detail_TBL_Attachment_BTN_Upload}" press="onAttachmentUpload" type="Emphasized" />
+                                    <ToolbarSpacer />
+                                    <FlexBox>
+                                        <Button icon="sap-icon://attachment-zip-file" text="{i18n>Detail_TBL_Attachment_BTN_DownloadAll}" tooltip="{i18n>Detail_TBL_Attachment_BTN_DownloadAll}" press="onAttachmentDownload" >
+                                            <customData>
+                                                <core:CustomData key="downall" value="All"/>
+                                            </customData>
+                                        </Button>
+                                    </FlexBox>
+                                </Toolbar>
+                            </headerToolbar>
+                            <items>
+                                <FeedListItem
+                                    id="idListAttachmentsItem"
+                                    timestamp="{path: 'CreateDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                                    sender="{CreatedBy}"
+                                    senderActive="false"
+                                    iconDisplayShape="Square"
+                                    iconPress="onAttachmentDownload"
+                                    info="{MimeType}"
+                                    text="{FileName}"
+                                    icon="{path: 'MimeType', formatter: '.getIconForMimeType'}"
+                                    convertLinksToAnchorTags="None">
+                                    <FeedListItemAction text="{i18n>Detail_TBL_Attachment_FLIA_Download}" icon="sap-icon://download" key="Download" press="onAttachmentDownload" />
+                                    <FeedListItemAction text="{i18n>Detail_TBL_Attachment_FLIA_Delete}" icon="sap-icon://delete" key="Delete" press="onAttachmentDelete" visible="{= ${CreatedBy} === ${LocalModel>/LoggedInUserID} }"/>
+                                </FeedListItem>
+                            </items>
+                        </List>
+
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    <!--<Page id="ObjectPageLayout" showHeader="true" showFooter="{= (${LocalModel>CAPMStatusCode} &amp;&amp; ${LocalModel>CAPMStatusCode} === 'C') ? false : true}" >-->
+
+        <uxap:footer>
+			<Toolbar>
+				<ToolbarSpacer />
+                <Button text="{i18n>saveComments}" visible="{= ${LocalModel>IsRequestor} ? true : false}" press="onSaveComments"/>
+				<Button type="Reject" text="{i18n>reject}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressRejectBtn"/>
+                <Button type="Accept" text="{i18n>approve}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressApproveBtn"/>
+                <Button type="Accept" text="{i18n>submitToSAP}" visible="{= ${LocalModel>CAPMStatusCode} === 'A' ? true : false}" press="onUpdateBackend"/>
+                <Button type="Emphasized" text="Submit" visible="{= ${LocalModel>IsRequestor} ? ${LocalModel>CAPMStatusCode} === 'A' ? false : true : false}" press="onPressSubmitBtn"/>  
+			</Toolbar>
+		</uxap:footer>
+    </uxap:ObjectPageLayout>
+    <!--</Page>-->
+</mvc:View>

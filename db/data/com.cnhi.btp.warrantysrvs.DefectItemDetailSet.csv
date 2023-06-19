@@ -1,0 +1,5 @@
+DefectCode,RuleCode,OutputCode,RuleCheck,Value,Curr,Alphanumerical,Message,Percentage
+000MANDATORYF0,Rule1,OutputCode1,RuleCheck1,1,INR,Alpha1,Message1,0
+000MANDATORYF0,Rule2,OutputCode2,RuleCheck2,2,INR,Alpha2,Message2,0
+000MANDATORYF0,Rule3,OutputCode3,RuleCheck3,3,INR,Alpha3,Message3,0
+000MANDATORYF0,Rule4,OutputCode4,RuleCheck4,4,INR,Alpha4,Message4,0

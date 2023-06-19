@@ -1,0 +1,64 @@
+{
+    "@odata.context": "$metadata#ClaimSet",
+    "value": [
+        {
+            "id": "388be1e8-f6ac-47f4-94df-7873be48105c",
+            "claimNo": "302200042414",
+            "status": "Inprogress",
+            "statusCode": "IP",
+            "nextApprover": "enricoferrob@gmail.com",
+            "currentLevel": 1,
+            "requestor": "enricoferrob@gmail.com",
+            "sequence": [
+                {
+                    "name": "",
+                    "email": "enricoferrob@gmail.com",
+                    "level": 1,
+                    "statusCode": ""
+                },
+                {
+                    "name": "",
+                    "email": "enrico.ferro@dncsrl.com",
+                    "level": 2,
+                    "statusCode": ""
+                }
+            ],
+            "claimActualData": "{\"Clmno\":\"302200042414\",\"SubDate\":\"2023-01-26T01:00:00.000Z\",\"ModelDef\":null,\"PartnerText\":\"Model Tractors\",\"ManDate\":\"2019-01-04T01:00:00.000Z\",\"Total\":\"1300\",\"Pnguid\":\"AAAAAAAA-1111-2222-3333-BBBBBBBBBE\",\"Km\":\"1729\",\"Astate\":\"Z030\",\"Curr\":\"INR\",\"StatusText\":\"Manual Assessment Required (L1)\",\"Wtype\":\"ZW01\",\"WtypeText\":\"On-line claim\",\"Bukrs\":\"G001\",\"BukrsText\":\"India PrivateLimited\",\"Vkorg\":\"G001\",\"VkorgText\":\"India Pvt.LTD\",\"ObjRef\":\"INDIA CS\",\"Partner\":\"2316516\",\"Vin\":\"PNE00000000000002\",\"Vehicle\":\"0000000002\",\"FailureDate\":\"2023-04-10T01:00:00.000Z\",\"CreateDate\":\"2023-04-12T01:00:02.000Z\",\"RepairStart\":\"2023-04-12T01:00:01.000Z\",\"RepairEnd\":\"2023-04-12T01:00:01.000Z\",\"DefectCode\":\"00000300ZZ0010\",\"Decision\":\"TD\",\"__metadata\":{\"type\":\"WarrantyService.WarrantySet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200042414')\"},\"Items\":[{\"Clmno\":\"302200042414\",\"SubDate\":\"2023-01-26T01:00:00.000Z\",\"ModelDef\":null,\"PartnerText\":\"Model Tractors\",\"ManDate\":\"2019-01-04T01:00:00.000Z\",\"Total\":\"1300\",\"Pnguid\":\"AAAAAAAA-1111-2222-3333-BBBBBBBBBE\",\"Km\":\"1729\",\"Astate\":\"Z030\",\"Curr\":\"INR\",\"StatusText\":\"Manual Assessment Required (L1)\",\"Wtype\":\"ZW01\",\"WtypeText\":\"On-line claim\",\"Bukrs\":\"G001\",\"BukrsText\":\"India PrivateLimited\",\"Vkorg\":\"G001\",\"VkorgText\":\"India Pvt.LTD\",\"ObjRef\":\"INDIA CS\",\"Partner\":\"2316516\",\"Vin\":\"PNE00000000000002\",\"Vehicle\":\"0000000002\",\"FailureDate\":\"2023-04-10T01:00:00.000Z\",\"CreateDate\":\"2023-04-12T01:00:02.000Z\",\"RepairStart\":\"2023-04-12T01:00:01.000Z\",\"RepairEnd\":\"2023-04-12T01:00:01.000Z\",\"DefectCode\":\"00000300ZZ0010\",\"Decision\":\"TD\",\"__metadata\":{\"type\":\"WarrantyService.WarrantySet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200042414')\"}}],\"DefectList\":[{\"DefectCode\":\"Defect1\",\"TotalParts\":\"1\",\"TotalLabor\":\"1\",\"TotalOther\":\"1\",\"TotalAdd\":\"1\",\"Curr\":\"PZ\",\"TotalFail\":\"1\",\"DoaLevel\":\"100\",\"Warranty\":\"X\",\"Decision\":\"Replace\",\"DecisionText\":\"ReplaceAll\",\"Service\":\"REP\",\"__metadata\":{\"type\":\"WarrantyService.DefectSet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/DefectSet('Defect1')\"}}]}"
+        },
+        {
+            "id": "866a0811-1f77-4808-a89a-b14760c641c1",
+            "claimNo": "302200008414",
+            "status": "Inprogress",
+            "statusCode": "IP",
+            "nextApprover": "enrico.ferro@dncsrl.com",
+            "currentLevel": 2,
+            "requestor": "enricoferrob@gmail.com",
+            "sequence": [
+                {
+                    "name": "",
+                    "email": "enricoferrob@gmail.com",
+                    "level": 1,
+                    "statusCode": "A"
+                },
+                {
+                    "name": "",
+                    "email": "enrico.ferro@dncsrl.com",
+                    "level": 2,
+                    "statusCode": ""
+                }
+            ],
+            "claimActualData": "{\"Clmno\":\"302200008414\",\"SubDate\":\"2023-01-26T01:00:00.000Z\",\"ModelDef\":null,\"PartnerText\":\"JAY TRACTORS\",\"ManDate\":\"2017-11-10T01:00:00.000Z\",\"Total\":\"3250\",\"Pnguid\":\"AAAAAAAA-1111-2222-3333-BBBBBBBBBD\",\"Km\":\"10\",\"Astate\":\"Z030\",\"Curr\":\"INR\",\"StatusText\":\"Manual Assessment Required (L1)\",\"Wtype\":\"ZW01\",\"WtypeText\":\"On-line claim\",\"Bukrs\":\"G001\",\"BukrsText\":\"India PrivateLimited\",\"Vkorg\":\"G001\",\"VkorgText\":\"India Pvt.LTD\",\"ObjRef\":\"INDIA CS\",\"Partner\":\"1234567\",\"Vin\":\"PNE00000000000001\",\"Vehicle\":\"0000000001\",\"FailureDate\":\"2023-04-12T01:00:00.000Z\",\"CreateDate\":\"2023-04-12T01:00:01.000Z\",\"RepairStart\":\"2023-04-12T01:00:00.000Z\",\"RepairEnd\":\"2023-04-12T01:00:00.000Z\",\"DefectCode\":\"000MANDATORYF0\",\"Decision\":\"T\",\"__metadata\":{\"type\":\"WarrantyService.WarrantySet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200008414')\"},\"Items\":[{\"Clmno\":\"302200008414\",\"SubDate\":\"2023-01-26T01:00:00.000Z\",\"ModelDef\":null,\"PartnerText\":\"JAY TRACTORS\",\"ManDate\":\"2017-11-10T01:00:00.000Z\",\"Total\":\"3250\",\"Pnguid\":\"AAAAAAAA-1111-2222-3333-BBBBBBBBBD\",\"Km\":\"10\",\"Astate\":\"Z030\",\"Curr\":\"INR\",\"StatusText\":\"Manual Assessment Required (L1)\",\"Wtype\":\"ZW01\",\"WtypeText\":\"On-line claim\",\"Bukrs\":\"G001\",\"BukrsText\":\"India PrivateLimited\",\"Vkorg\":\"G001\",\"VkorgText\":\"India Pvt.LTD\",\"ObjRef\":\"INDIA CS\",\"Partner\":\"1234567\",\"Vin\":\"PNE00000000000001\",\"Vehicle\":\"0000000001\",\"FailureDate\":\"2023-04-12T01:00:00.000Z\",\"CreateDate\":\"2023-04-12T01:00:01.000Z\",\"RepairStart\":\"2023-04-12T01:00:00.000Z\",\"RepairEnd\":\"2023-04-12T01:00:00.000Z\",\"DefectCode\":\"000MANDATORYF0\",\"Decision\":\"T\",\"__metadata\":{\"type\":\"WarrantyService.WarrantySet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200008414')\"}}],\"DefectList\":[{\"DefectCode\":\"Defect1\",\"TotalParts\":\"1\",\"TotalLabor\":\"1\",\"TotalOther\":\"1\",\"TotalAdd\":\"1\",\"Curr\":\"PZ\",\"TotalFail\":\"1\",\"DoaLevel\":\"100\",\"Warranty\":\"X\",\"Decision\":\"Replace\",\"DecisionText\":\"ReplaceAll\",\"Service\":\"REP\",\"__metadata\":{\"type\":\"WarrantyService.DefectSet\",\"uri\":\"https://21b00683trial.launchpad.cfapps.us10.hana.ondemand.com/cc1ee135-65fc-4181-b893-a37b64832433.com-cnhi-btp-warrantyclaimsapproval.comcnhibtpwarrantyclaimsapproval/~210223134816+0000~/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/DefectSet('Defect1')\"}}]}"
+        },
+        {
+            "id": "ac4c0ba4-5d49-4b8b-ae60-29a3e8a008e2",
+            "claimNo": "233232",
+            "status": null,
+            "statusCode": null,
+            "nextApprover": null,
+            "currentLevel": null,
+            "requestor": null,
+            "sequence": [],
+            "claimActualData": null
+        }
+    ]
+}
