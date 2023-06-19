@@ -49,3 +49,4 @@ jobs:
            cf_org: ${{ secrets.CF_TRIAL_ORG }}
            cf_space: ${{ secrets.CF_TRIAL_SPACE }}
            command: deploy ./claimapprovalsrv_1.0.0.mtar  -a abort --retries 1
+
