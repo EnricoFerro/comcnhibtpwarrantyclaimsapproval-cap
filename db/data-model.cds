@@ -15,8 +15,27 @@ entity Claim {
                             level: Integer;
                             statusCode: String;
                             };
-        claimActualData : String;
+        claimActualData : LargeString;
         comments        : Association to many Comments on comments.claimID = $self;
+}
+
+
+@cds.persistence.skip: true
+entity ClaimApprovers {
+    key id              : UUID;
+        claimNo         : String;
+        status          : String;
+        statusCode      : String;
+        nextApprover    : String;
+        currentLevel    : Integer;
+        requestor       : String;
+        sequence        : array of {
+                            name: String;
+                            email: String;
+                            level: Integer;
+                            statusCode: String;
+                            };
+        claimActualData : LargeString;
 }
 
 entity Comments: managed {

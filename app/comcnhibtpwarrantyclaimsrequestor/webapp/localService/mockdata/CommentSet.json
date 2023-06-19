@@ -1,0 +1,61 @@
+{
+    "@odata.context": "$metadata#CommentSet",
+    "value": [
+        {
+            "createdAt": "2023-04-19T09:22:13.603Z",
+            "createdBy": "anonymous",
+            "modifiedAt": "2023-04-19T09:22:13.603Z",
+            "modifiedBy": "anonymous",
+            "id": "1fef6a68-1fab-4c52-947e-7dc67662f1af",
+            "claimID_id": null,
+            "claimNo": "302200008414",
+            "type": "A",
+            "comment": "1° Approvazione",
+            "user": null,
+            "authorID": "enricoferrob@gmail.com",
+            "authorName": "Enrico Ferro"
+        },
+        {
+            "createdAt": "2023-04-20T08:19:41.934Z",
+            "createdBy": "anonymous",
+            "modifiedAt": "2023-04-20T08:19:41.934Z",
+            "modifiedBy": "anonymous",
+            "id": "2d5fed0c-5bc8-4d98-b074-fe77818a4006",
+            "claimID_id": null,
+            "claimNo": "302200042414",
+            "type": "S",
+            "comment": "First comment",
+            "user": null,
+            "authorID": "enricoferrob@gmail.com",
+            "authorName": "Enrico Ferro"
+        },
+        {
+            "createdAt": "2023-04-19T08:50:33.040Z",
+            "createdBy": "anonymous",
+            "modifiedAt": "2023-04-19T08:50:33.040Z",
+            "modifiedBy": "anonymous",
+            "id": "bf871060-c8d1-44c6-b23d-22b18dc15ca1",
+            "claimID_id": null,
+            "claimNo": "302200008414",
+            "type": "Saved",
+            "comment": "Prova commento",
+            "user": null,
+            "authorID": "enricoferrob@gmail.com",
+            "authorName": "Enrico Ferro"
+        },
+        {
+            "createdAt": "2023-04-19T08:50:39.766Z",
+            "createdBy": "anonymous",
+            "modifiedAt": "2023-04-19T08:50:39.766Z",
+            "modifiedBy": "anonymous",
+            "id": "d1c49e79-49b3-44f2-aff1-05e482f34438",
+            "claimID_id": null,
+            "claimNo": "302200008414",
+            "type": "S",
+            "comment": "",
+            "user": null,
+            "authorID": "enricoferrob@gmail.com",
+            "authorName": "Enrico Ferro"
+        }
+    ]
+}

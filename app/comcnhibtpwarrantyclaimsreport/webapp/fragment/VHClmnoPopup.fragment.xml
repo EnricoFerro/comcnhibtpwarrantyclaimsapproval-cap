@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+	xmlns:valuehelpdialog="sap.ui.comp.valuehelpdialog"
+	xmlns:core="sap.ui.core">
+	<valuehelpdialog:ValueHelpDialog 
+		title="{i18n>Main_SF_Multi_Clmno}"
+		ok=".onVHClmnoOkPress"
+		cancel=".onVHClmnoCancelPress"
+		key="ClmnoVHPopup"
+		descriptionKey="Name"
+		supportRanges="true"
+		supportRangesOnly="true"/>
+</core:FragmentDefinition>
