@@ -20,7 +20,6 @@
     "scripts": {
         "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
         "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
-        "start-local-fake-sap": "fiori run --config ./ui5-local-fake-sap.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
         "start-local-fake": "fiori run --config ./ui5-local-fake.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
         "start-local-4004": "fiori run --config ./ui5-local-4004.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
         "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsreport-display\"",
