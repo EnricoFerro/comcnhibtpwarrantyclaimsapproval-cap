@@ -41,7 +41,7 @@ jobs:
            name: claimapprovalsrv_1.0.0.mtar
            path: ./
        - name: Deploy to Cloud Foundry
-         uses: guerric-p/cf-cli-action@v1
+         uses: EnricoFerro/cf-cli-action@v1
          with:
            cf_api: ${{ secrets.CF_DEV_API }}
            cf_username: ${{ secrets.CF_USERNAME }}
