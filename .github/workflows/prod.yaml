@@ -1,5 +1,5 @@
 # Build Multitarget Application & Deploy it to Cloud Foundry
-name: Build MTA & Deploy it to CF (Trial)
+name: Build MTA & Deploy it to CF (Production)
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
