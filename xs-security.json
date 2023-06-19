@@ -1,4 +1,6 @@
 {
+  "xsappname": "claimapprovalsrv_security",
+  "tenant-mode": "dedicated",
   "scopes": [],
   "attributes": [],
   "role-templates": []
