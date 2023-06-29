@@ -1,5 +1,5 @@
 # Build Multitarget Application & Deploy it to Cloud Foundry
-name: Build MTA & Deploy it to CF (Trial)
+name: Build MTA & Deploy it to CF (Quality)
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -48,4 +48,4 @@ jobs:
            cf_password: ${{ secrets.CF_PASSWORD }}
            cf_org: ${{ secrets.CF_QUA_ORG }}
            cf_space: ${{ secrets.CF_QUA_SPACE }}
-           command: deploy ./claimapprovalsrv_1.0.0.mtar  --retries 1
+           command: deploy ./claimapprovalsrv_1.0.0.mtar -f --retries 1
