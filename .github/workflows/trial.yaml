@@ -48,4 +48,4 @@ jobs:
            cf_password: ${{ secrets.CF_PASSWORD }}
            cf_org: ${{ secrets.CF_TRIAL_ORG }}
            cf_space: ${{ secrets.CF_TRIAL_SPACE }}
-           command: deploy ./claimapprovalsrv_1.0.0.mtar  -f --retries 1
+           command: deploy ./claimapprovalsrv_1.0.0.mtar -i -f --retries 1
