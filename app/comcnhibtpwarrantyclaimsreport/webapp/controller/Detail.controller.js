@@ -196,21 +196,24 @@ sap.ui.define([
                     var sUrl = oDataModel.sServiceUrl + "/DefectSet";
                     oLocalModel.setProperty(sBindingCtxPath+"/DefectList", []);
                     that.loadBusyIndicator("ObjectPageLayout",true);
-                    $.ajax({
-                        url: sUrl,
-                        dataType: 'JSON',
-                        type: "get",
-                        data: { 
+                    oDataModel.read("/DefectSet", { 
+                        /*$.ajax({
+                            url: sUrl,
+                            dataType: 'JSON',
+                            type: "get",
+                            data: { */
+                        urlParameters: {
                             search: oBindingCtx.Clmno,
                             $expand: 'DefectExposed'
                         },
                         success: function(oData) {
                             that.loadBusyIndicator("ObjectPageLayout",false);
-                            if(oData.d && oData.d.results && oData.d.results.length > 0){
+                            if(oData.results && oData.results.length > 0){
                                 //oActualData['DefectList'] = oData.d.results;
                                 //oLocalModel.setProperty(sBindingCtxPath+"/ActualData", JSON.stringify(oActualData));
-                                oLocalModel.setProperty(sBindingCtxPath+"/DefectList", oData.d.results);
-                                resolve(oData.d.results);
+                                oLocalModel.setProperty(sBindingCtxPath+"/DefectList", oData.results);
+                                resolve(oData.results);
+
                             }
                             resolve([]);
                         },
@@ -237,21 +240,23 @@ sap.ui.define([
                     var sUrl = oDataModel.sServiceUrl + "/DefectVersionSet";
                     oLocalModel.setProperty(sBindingCtxPath+"/DefectVersionList", []);
                     that.loadBusyIndicator("ObjectPageLayout",true);
-                    $.ajax({
+                    oDataModel.read("/DefectVersionSet", { 
+                    /*$.ajax({
                         url: sUrl,
                         dataType: 'JSON',
                         type: "get",
-                        data: { 
+                        data: {*/
+                        urlParameters: {
                             search: oBindingCtx.Clmno,
                             $expand: 'DefectExposed'
                         },
                         success: function(oData) {
                             that.loadBusyIndicator("ObjectPageLayout",false);
-                            if(oData.d && oData.d.results && oData.d.results.length > 0){
+                            if(oData.results && oData.results.length > 0){
                                 //oActualData['DefectVersionList'] = oData.d.results;
                                 //oLocalModel.setProperty(sBindingCtxPath+"/ActualData", JSON.stringify(oActualData));
-                                oLocalModel.setProperty(sBindingCtxPath+"/DefectVersionList", oData.d.results);
-                                resolve(oData.d.results);
+                                oLocalModel.setProperty(sBindingCtxPath+"/DefectVersionList", oData.results);
+                                resolve(oData.results);
                             }
                             resolve([]);
                         },
@@ -359,17 +364,19 @@ sap.ui.define([
                 var sUrl = oDataModel.sServiceUrl + "/ActionsSet";
                 oLocalModel.setProperty("/Actions",[]);
                 that.loadBusyIndicator("idDefectTbl",true);
-                $.ajax({
-                    url: sUrl,
-                    dataType: 'JSON',
-                    type: "get",
-                    data: { 
+                oDataModel.read("/ActionsSet", { 
+                    /*$.ajax({
+                        url: sUrl,
+                        dataType: 'JSON',
+                        type: "get",
+                        data: {*/
+                    urlParameters: {
                         search: oBindingCtx.Clmno
                     },
                     success: function(oData) {
                         that.loadBusyIndicator("idDefectTbl",false);
-                        if(oData.d && oData.d.results && oData.d.results.length > 0){
-                            oLocalModel.setProperty("/Actions", oData.d.results);
+                        if(oData.results && oData.results.length > 0){
+                            oLocalModel.setProperty("/Actions", oData.results);
                         }
                     },
                     error: function(oError) {

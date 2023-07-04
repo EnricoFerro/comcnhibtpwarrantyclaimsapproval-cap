@@ -45,7 +45,7 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "claimsapproval",
+                    "semanticObject": "claimsrequestor",
                     "action": "display",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",
@@ -111,7 +111,9 @@
                     "defaultBindingMode": "TwoWay",
                     "defaultUpdateMethod": "PUT",
                     "defaultCountMode": "Inline",
-                    "refreshAfterChange": false
+                    "refreshAfterChange": false,
+                    "useBatch": false
+
                 }
               },
             "LocalModel": {
