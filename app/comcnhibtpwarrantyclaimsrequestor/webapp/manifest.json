@@ -113,6 +113,7 @@
                     "defaultCountMode": "Inline",
                     "refreshAfterChange": false,
                     "useBatch": false
+
                 }
               },
             "LocalModel": {

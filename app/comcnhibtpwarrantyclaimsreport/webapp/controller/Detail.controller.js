@@ -213,6 +213,7 @@ sap.ui.define([
                                 //oLocalModel.setProperty(sBindingCtxPath+"/ActualData", JSON.stringify(oActualData));
                                 oLocalModel.setProperty(sBindingCtxPath+"/DefectList", oData.results);
                                 resolve(oData.results);
+
                             }
                             resolve([]);
                         },
