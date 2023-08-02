@@ -401,12 +401,12 @@
             <uxap:ObjectPageSection
                 titleUppercase="false"
                 title="{LocalModel>Astate}"
-                 visible="{= ${LocalModel>CAPMStatusCode} === 'A' || ${LocalModel>CAPMStatusCode} === 'C' ? true : false}"
+                 visible="false"
             >
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection titleUppercase="false">
                         <!--<Title text="{LocalModel>Astate}" visible="{= ${LocalModel>CAPMStatusCode} === 'C' ? true : false}" />-->
-                        <Select visible="{= ${LocalModel>CAPMStatusCode} === 'A' ? true : false}" editable="false" forceSelection="false" class="sapUiSmallMarginTop" showSecondaryValues= "true" selectedKey="{LocalModel>selProcess}" items="{LocalModel>/Actions}"  width="20%">
+                        <Select visible="{= ${LocalModel>CAPMStatusCode} === 'A' || ${LocalModel>CAPMStatusCode} === 'C' ? true : false}" editable="false" forceSelection="false" class="sapUiSmallMarginTop" showSecondaryValues= "true" selectedKey="{LocalModel>selProcess}" items="{LocalModel>/Actions}"  width="20%">
                             <core:ListItem additionalText="{LocalModel>Acode}" text="{LocalModel>Description}" key="{LocalModel>Acode}" />
                         </Select>
                     </uxap:ObjectPageSubSection>

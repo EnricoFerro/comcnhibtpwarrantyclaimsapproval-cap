@@ -402,8 +402,8 @@ sap.ui.define([
                             oRowObj['CAPMStatusCode'] = oRes.results[iIdx].statusCode;
                             oRowObj['WorkflowStatus'] = oRes.results[iIdx].statusCode === 'A' ? 'Approved' : oRes.results[iIdx].statusCode === 'IP' ? 'Inprogress' : oRes.results[iIdx].statusCode === 'C' ? 'Completed' : oRes.results[iIdx].statusCode === 'R' ? 'Rejected' : 'None';
 
-                            oRowObj['IsRequestor'] = false;
-                            oRowObj['IsApprover'] = true;
+                            oRowObj['IsRequestor'] = true;
+                            oRowObj['IsApprover'] = false;
                             oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.results[iIdx].currentLevel]);
                             if (oRes.results[iIdx].statusCode === 'IP') {
                                 oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.results[iIdx].currentLevel]);

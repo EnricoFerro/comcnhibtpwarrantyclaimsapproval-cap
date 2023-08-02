@@ -3,8 +3,8 @@
   "authenticationMethod": "route",
   "routes": [
     {
-        "source": "^/sap/opu/sap/ZBTP_POC3_GTW_SRV/(.*)$",
-        "target": "/sap/opu/sap/ZBTP_POC3_GTW_SRV/$1",
+        "source": "^/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/(.*)$",
+        "target": "/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/$1",
         "destination": "ERPDQP",
         "authenticationType": "xsuaa",
         "csrfProtection": false
