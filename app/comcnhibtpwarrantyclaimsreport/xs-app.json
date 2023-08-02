@@ -3,8 +3,8 @@
   "authenticationMethod": "route",
   "routes": [
     {
-        "source": "^/sap/opu/(.*)$",
-        "target": "/sap/opu/$1",
+        "source": "^/sap/opu/sap/ZBTP_POC3_GTW_SRV/(.*)$",
+        "target": "/sap/opu/sap/ZBTP_POC3_GTW_SRV/$1",
         "destination": "ERPDQP",
         "authenticationType": "xsuaa",
         "csrfProtection": false
@@ -15,6 +15,13 @@
         "source": "^/api/(.*)$",
         "destination": "claimapprovalsrv-srv",
         "target": "/api/$1"
+    },
+    {
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "source": "^/sap/opu/odata/sap/api/v2/srv/ZCLAIMAPPROVALSRV/(.*)$",
+        "destination": "claimapprovalsrv-srv",
+        "target": "/sap/opu/odata/sap/api/v2/srv/ZCLAIMAPPROVALSRV/$1"
     },
     {
       "source": "^/resources/(.*)$",

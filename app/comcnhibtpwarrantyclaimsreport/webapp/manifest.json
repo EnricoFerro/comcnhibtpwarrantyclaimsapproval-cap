@@ -36,6 +36,15 @@
                   "odataVersion": "4.0",
                   "localUri": "localService/metadata.xml"
                 }
+            },
+            "ZCLAIMAPPROVALSRVV2": {
+                "uri": "/sap/opu/odata/sap/api/v2/srv/ZCLAIMAPPROVALSRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         },
         "crossNavigation": {
@@ -120,6 +129,16 @@
                     "groupId": "$direct",
                     "synchronizationMode": "None",
                     "autoExpandSelect": true
+                }
+            },
+            "ClaimApprovalCAPV2": {
+                "dataSource": "ZCLAIMAPPROVALSRVV2",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultUpdateMethod": "PUT",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
                 }
             }
         },

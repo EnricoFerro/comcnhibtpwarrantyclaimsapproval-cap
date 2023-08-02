@@ -89,10 +89,10 @@
 								<MultiComboBox
 									id="Maim_MCB_UiStatus"
                                     selectedKeys="C,IP,R,A">
-									<core:Item key="C"  text="{i18n>MAIN_SF_Multi_uistatus_C}"/>
 									<core:Item key="IP" text="{i18n>MAIN_SF_Multi_uistatus_IP}"/>
 									<core:Item key="R"  text="{i18n>MAIN_SF_Multi_uistatus_R}"/>
                                     <core:Item key="A"  text="{i18n>MAIN_SF_Multi_uistatus_A}"/>
+                                    <core:Item key="C"  text="{i18n>MAIN_SF_Multi_uistatus_C}"/>
 								</MultiComboBox>
 							</smartfilterbar:customControl>
 						</smartfilterbar:ControlConfiguration>

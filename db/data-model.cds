@@ -48,3 +48,26 @@ entity Comments: managed {
         authorID        : String;
         authorName      : String;
 }
+
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@cds.persistence.skip: true
+entity ClaimReport {
+    key id              : UUID;
+        claimNo         : String;
+        status          : String;
+        statusCode      : String;
+        nextApprover    : String;
+        currentLevel    : Integer;
+        requestor       : String;
+        createDate      : DateTime;
+        sequence        : array of {
+                            name: String;
+                            email: String;
+                            level: Integer;
+                            statusCode: String;
+                            };
+        claimActualData : LargeString;
+}
