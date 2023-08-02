@@ -467,7 +467,7 @@ sap.ui.define([
                 oDataModel.update(sPath,oPayload,{
                     success: function(oData, oRes){
                         BusyIndicator.hide();
-                        that._onCloseClaim();
+                        that._onCloseClaim(sSelProcess);
                     }
                 });
             },
@@ -543,12 +543,14 @@ sap.ui.define([
                 oTable.removeSelections(true);
                 oLocalModel.setProperty("/showProcessFlow", false);
             },
-            _onCloseClaim: function(){
+            _onCloseClaim: function(Astate){
                 var that = this;
                 var oBindingCtx = that.getView().getBindingContext("LocalModel").getObject();
                 var oPayload = {
                     status : "Closed",
-                    statusCode : "C"
+                    statusCode : "C",
+                    requestorSubmitToSap: new Date(),
+                    Astate: Astate
                 };
                 var sUrl = sServiceUrl + "ClaimSet/"+oBindingCtx.id;
                 this.loadBusyIndicator("ObjectPageLayout", true);
@@ -661,7 +663,8 @@ sap.ui.define([
                         name: oBindingCtx.NextApprovers[i].name,
                         email: oBindingCtx.NextApprovers[i].email,
                         level: oBindingCtx.NextApprovers[i].level,
-                        statusCode: ""
+                        statusCode: "",
+                        approvedDate: null
                     });
                 }
                 
@@ -673,7 +676,10 @@ sap.ui.define([
                     nextApprover : oBindingCtx.NextApprovers.find(function(el){ return el.level === 1}).email,
                     status: "Inprogress",
                     statusCode: "IP",
-                    requestor   : sRequestor
+                    requestor   : sRequestor,
+                    requestorCreateDate: new Date(),
+                    requestorSubmitToSap: null,
+                    Astate: null
                 };
                 if(sId){
                     sUrl = sServiceUrl + "ClaimSet/"+sId;

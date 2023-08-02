@@ -570,6 +570,7 @@ sap.ui.define([
                 var iCurrLvl = oBindingCtx.currentLevel;
                 var aSeqPayload = $.extend(true,[],oBindingCtx.NextApprovers);
                 aSeqPayload.find(function(el){ return el.level === iCurrLvl}).statusCode = "R";
+                aSeqPayload.find(function(el){ return el.level === iCurrLvl}).approvedDate = new Date();
                 var oPayload = {
                     currentLevel  : null,
                     nextApprover  : null,
@@ -607,6 +608,7 @@ sap.ui.define([
                 var aSeqPayload = $.extend(true,[],oBindingCtx.NextApprovers);
                 var oPayload;
                 aSeqPayload.find(function(el){ return el.level === iCurrLvl}).statusCode = "A";
+                aSeqPayload.find(function(el){ return el.level === iCurrLvl}).approvedDate = new Date();
                 if(iCurrLvl === iTotalLevels){
                     oPayload = {
                         currentLevel  : null,

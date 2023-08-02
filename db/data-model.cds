@@ -14,7 +14,11 @@ entity Claim {
                             email: String;
                             level: Integer;
                             statusCode: String;
-                            };
+                            approvedDate: DateTime;
+        };
+        requestorCreateDate: DateTime;
+        requestorSubmitToSap: DateTime;
+        Astate: String;
         claimActualData : LargeString;
         comments        : Association to many Comments on comments.claimID = $self;
 }
@@ -34,7 +38,11 @@ entity ClaimApprovers {
                             email: String;
                             level: Integer;
                             statusCode: String;
-                            };
+                            approvedDate: DateTime;
+        };
+        requestorCreateDate: DateTime;
+        requestorSubmitToSap: DateTime;
+        Astate: String;
         claimActualData : LargeString;
 }
 
@@ -68,6 +76,10 @@ entity ClaimReport {
                             email: String;
                             level: Integer;
                             statusCode: String;
-                            };
+                            approvedDate: DateTime;
+        };
+        requestorCreateDate: DateTime;
+        requestorSubmitToSap: DateTime;
+        Astate: String;
         claimActualData : LargeString;
 }
