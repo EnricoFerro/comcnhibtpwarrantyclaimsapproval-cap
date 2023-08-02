@@ -209,7 +209,7 @@ sap.ui.define([
 
                 var bIsRequestor = this._oLocalModel.getProperty("/IsRequestorLoggedIn");
                 if(bIsRequestor){
-                    this._getWarrantyListPromise("page",oClmnoFilters.concat(oClmnoVHFilters));
+                    this._getWarrantyListPromise2("page",oClmnoFilters.concat(oClmnoVHFilters));
                 } else {
                     //Call if logged in user is not the requestor
                     this._getClaimsFromCAPMPromise("page",oClmnoFilters.concat(oClmnoVHFilters));

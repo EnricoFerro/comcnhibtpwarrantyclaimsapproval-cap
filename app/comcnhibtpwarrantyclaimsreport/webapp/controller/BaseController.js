@@ -177,14 +177,14 @@ sap.ui.define([
                             aResults[i]['IsRequestor'] = true;
                             aResults[i]['IsApprover'] = false;
                             if (iIdx >= 0) {
-                                if (oRes.value[iIdx].statusCode === 'C') {
-                                    aResults[i]['nextApprover'] = '';
-                                    aResults[i]['currentLevel'] = null;
-                                    aResults[i]['NextApprovers'] = [];
+                                //if (oRes.value[iIdx].statusCode === 'C') {
+                                //    aResults[i]['nextApprover'] = '';
+                                //    aResults[i]['currentLevel'] = null;
+                                //    aResults[i]['NextApprovers'] = [];
 
-                                    aResults[i]['uistatus'] = that.getResourceBundle().getText("notSubmitted");
-                                    aResults[i]['uistatusstate'] = "None";
-                                } else {
+                                //    aResults[i]['uistatus'] = that.getResourceBundle().getText("notSubmitted");
+                                //    aResults[i]['uistatusstate'] = "None";
+                                //} else {
                                     aResults[i]['id'] = oRes.value[iIdx].id;
                                     aResults[i]['nextApprover'] = oRes.value[iIdx].nextApprover;
                                     aResults[i]['currentLevel'] = oRes.value[iIdx].currentLevel;
@@ -198,14 +198,17 @@ sap.ui.define([
                                     } else if (oRes.value[iIdx].statusCode === 'A') {
                                         aResults[i]['uistatus'] = that.getResourceBundle().getText("claimApproved");
                                         aResults[i]['uistatusstate'] = "Success";
-                                    } else if (oRes.value[iIdx].statusCode === 'R') {
+                                    }else if (oRes.value[iIdx].statusCode === 'C') {
+                                        aResults[i]['uistatus'] = that.getResourceBundle().getText("claimCompleted");
+                                        aResults[i]['uistatusstate'] = "Information";
+                                    }else if (oRes.value[iIdx].statusCode === 'R') {
                                         aResults[i]['uistatus'] = that.getResourceBundle().getText("claimRejected");
                                         aResults[i]['uistatusstate'] = "Error";
                                     } else {
                                         aResults[i]['uistatus'] = that.getResourceBundle().getText("notSubmitted");
                                         aResults[i]['uistatusstate'] = "None";
                                     }
-                                }
+                                //}
                                 var oMultiUiStatus = oLocalModel.getProperty("/MultiUiStatus");
                                 if ( oMultiUiStatus == undefined || oMultiUiStatus == null || oMultiUiStatus.find(i => i === oRes.value[iIdx].statusCode) != undefined){
                                     aFinal.push(aResults[i]);
@@ -269,6 +272,265 @@ sap.ui.define([
                 }.bind(this));
             });
         },
+
+        getClaimIdFilter: function(aFilter, claimId) {
+            if ( aFilter == undefined || aFilter == null) {
+                aFilter = [];
+            }
+            if (claimId != undefined || claimId != null) {
+                if (Array.isArray(claimId)) {
+                    for (const item of claimId) {
+                        if ( item.range.exclude  && item.range.operation === "EQ" ) {
+                            item.range.operation = "NE"
+                        }
+                        if ( item.range.operation !== "Empty") {
+                            aFilter.push(new Filter({
+                                path: "Clmno",
+                                operator: item.range.operation,
+                                value1: item.range.value1,
+                                value2: item.range.value2,
+                            }));
+                        }
+                    }
+                } else {
+                    aFilter.push(new Filter({
+                        path: "Clmno",
+                        operator: FilterOperator.EQ,
+                        value1: claimId,
+                        value2: undefined
+                    }));
+                }
+            }
+            return aFilter;
+        },
+        getDateFilter: function(aFilter, oLocalModel) {
+            if ( aFilter == undefined || aFilter == null) {
+                aFilter = [];
+            }
+            var oFrmDate = oLocalModel.getProperty('/FromDate')
+            var oToDate  = oLocalModel.getProperty('/ToDate')
+            if (oFrmDate != undefined && oFrmDate != null || oToDate != undefined || oFrmDate != null ) {
+                var oDateTimeInstance = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                    formatOptions: { UTC: true }
+                });
+
+                var oFrmDateYr = oLocalModel.getProperty('/FromDate').getFullYear();
+                var oFrmDateMnth = oLocalModel.getProperty('/FromDate').getMonth() + 1;
+                var oFrmDateDate = oLocalModel.getProperty('/FromDate').getDate();
+                var oFrmttdFrmDate = new Date([oFrmDateYr, oFrmDateMnth, oFrmDateDate].join('-'));
+                oFrmttdFrmDate.setDate(oFrmttdFrmDate.getDate());
+
+                
+                aFilter.push(new Filter({
+                    path: "createDate",
+                    operator: FilterOperator.BT,
+                    value1: oFrmttdFrmDate,
+                    value2: oLocalModel.getProperty('/ToDate')
+                }));
+            } 
+            return aFilter;
+        },
+        getStatusFilter: function(aFilter, oLocalModel) {
+            if ( aFilter == undefined || aFilter == null) {
+                aFilter = [];
+            }
+            var oMultiUiStatus = oLocalModel.getProperty("/MultiUiStatus");
+            for (const status of oMultiUiStatus) {
+                aFilter.push(new Filter({
+                    path: "statusCode",
+                    operator:  FilterOperator.EQ,
+                    value1: status,
+                    value2: undefined,
+                }));
+            }
+            return aFilter;
+        },
+        _buildFilters: function(claimId) {
+            var buildFilter = "";
+            if (claimId != undefined || claimId != null) {
+                if (Array.isArray(claimId)) {
+                    for (const item of claimId) {
+                        if ( item.range.exclude  && item.range.operation === "EQ" ) {
+                            item.range.operation = "NE"
+                        }
+                        if ( item.range.operation !== "Empty") {
+                            if ( buildFilter !== "" ) {
+                                buildFilter = buildFilter + ' and';
+                            }
+                            buildFilter = buildFilter + ' claimId ' + item.range.operation; 
+                            aFilter.push(new Filter({
+                                path: "Clmno",
+                                operator: item.range.operation,
+                                value1: item.range.value1,
+                                value2: item.range.value2,
+                            }));
+                        }
+                    }
+                } else {
+                    aFilter.push(new Filter({
+                        path: "Clmno",
+                        operator: FilterOperator.EQ,
+                        value1: claimId,
+                        value2: undefined
+                    }));
+                }
+            }
+            return buildFilter;
+        },
+        _getWarrantyListPromise2: function(busyIndicatorId, claimId) {
+            var that = this,
+                oLocalModel = this.getOwnerComponent().getModel('LocalModel'),
+                oCAPMMOdel = this.getOwnerComponent().getModel('ClaimApprovalCAP'),
+                oCAPMMOdelv2 = this.getOwnerComponent().getModel('ClaimApprovalCAPV2'),
+                sServiceUrl = oCAPMMOdel.sServiceUrl,
+                aFinal = [],    
+                aFilters = [];
+            aFilters = this.getClaimIdFilter(aFilters, claimId);
+            aFilters = this.getDateFilter(aFilters,oLocalModel);
+            aFilters = this.getStatusFilter(aFilters,oLocalModel);
+            this.loadBusyIndicator(busyIndicatorId, true);
+            return new Promise((resolve, reject) => {
+                oCAPMMOdelv2.read("/ClaimReportSet", {
+                    filters: aFilters,
+                    success: async function (oRes) {
+                        for (let iIdx = 0; iIdx < oRes.results.length; iIdx++) {
+                            var oRowObj = {};
+                            oRowObj['id'] = oRes.results[iIdx].id;
+                            oRowObj['nextApprover'] = oRes.results[iIdx].nextApprover;
+                            oRowObj['currentLevel'] = oRes.results[iIdx].currentLevel;
+                            oRowObj['NextApprovers'] = oRes.results[iIdx].sequence ? oRes.results[iIdx].sequence : [];
+                            oRowObj['CAPMStatusCode'] = oRes.results[iIdx].statusCode;
+                            oRowObj['WorkflowStatus'] = oRes.results[iIdx].statusCode === 'A' ? 'Approved' : oRes.results[iIdx].statusCode === 'IP' ? 'Inprogress' : oRes.results[iIdx].statusCode === 'C' ? 'Completed' : oRes.results[iIdx].statusCode === 'R' ? 'Rejected' : 'None';
+
+                            oRowObj['IsRequestor'] = true;
+                            oRowObj['IsApprover'] = false;
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.results[iIdx].currentLevel]);
+                            if (oRes.results[iIdx].statusCode === 'IP') {
+                                oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.results[iIdx].currentLevel]);
+                                oRowObj['uistatusstate'] = "Warning";
+                            } else if (oRes.results[iIdx].statusCode === 'A') {
+                                oRowObj['uistatus'] = that.getResourceBundle().getText("claimApproved");
+                                oRowObj['uistatusstate'] = "Success";
+                            }else if (oRes.results[iIdx].statusCode === 'C') {
+                                oRowObj['uistatus'] = that.getResourceBundle().getText("claimCompleted");
+                                oRowObj['uistatusstate'] = "Information";
+                            }else if (oRes.results[iIdx].statusCode === 'R') {
+                                oRowObj['uistatus'] = that.getResourceBundle().getText("claimRejected");
+                                oRowObj['uistatusstate'] = "Error";
+                            } else {
+                                oRowObj['uistatus'] = that.getResourceBundle().getText("notSubmitted");
+                                oRowObj['uistatusstate'] = "None";
+                            }
+
+                            oRowObj = Object.assign(oRowObj, JSON.parse(oRes.results[iIdx].claimActualData));
+                            for (const iterator of ["CreateDate","FailureDate","RepairStart","RepairEnd","ManDate","SubDate"]) {
+                                oRowObj[iterator] = typeof oRowObj[iterator] === 'string' ? new Date(oRowObj[iterator]) : oRowObj[iterator]; 
+                            }
+                            aFinal.push(oRowObj);
+                        }
+                        oLocalModel.setProperty("/Results", $.extend(true, [], aFinal));
+                        that.loadBusyIndicator(busyIndicatorId, false);
+                        resolve();
+                    },
+                    error:function (oError) {
+                        that.loadBusyIndicator(busyIndicatorId, false);
+                        reject(oError);
+                    }
+                });
+            });
+            /*   ReqHelper.sendGetReq(sUrl).then(function (oRes) {
+                    for (let iIdx = 0; iIdx < oRes.value.length; iIdx++) {
+                        var oRowObj = {};
+                        oRowObj['id'] = oRes.value[iIdx].id;
+                        oRowObj['nextApprover'] = oRes.value[iIdx].nextApprover;
+                        oRowObj['currentLevel'] = oRes.value[iIdx].currentLevel;
+                        oRowObj['NextApprovers'] = oRes.value[iIdx].sequence ? oRes.value[iIdx].sequence : [];
+                        oRowObj['CAPMStatusCode'] = oRes.value[iIdx].statusCode;
+                        oRowObj['WorkflowStatus'] = oRes.value[iIdx].statusCode === 'A' ? 'Approved' : oRes.value[iIdx].statusCode === 'IP' ? 'Inprogress' : oRes.value[iIdx].statusCode === 'C' ? 'Completed' : oRes.value[iIdx].statusCode === 'R' ? 'Rejected' : 'None';
+
+                        oRowObj['IsRequestor'] = false;
+                        oRowObj['IsApprover'] = true;
+                        oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.value[iIdx].currentLevel]);
+                        if (oRes.value[iIdx].statusCode === 'IP') {
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("uiStatus", [oRes.value[iIdx].currentLevel]);
+                            oRowObj['uistatusstate'] = "Warning";
+                        } else if (oRes.value[iIdx].statusCode === 'A') {
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("claimApproved");
+                            oRowObj['uistatusstate'] = "Success";
+                        }else if (oRes.value[iIdx].statusCode === 'C') {
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("claimCompleted");
+                            oRowObj['uistatusstate'] = "Information";
+                        }else if (oRes.value[iIdx].statusCode === 'R') {
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("claimRejected");
+                            oRowObj['uistatusstate'] = "Error";
+                        } else {
+                            oRowObj['uistatus'] = that.getResourceBundle().getText("notSubmitted");
+                            oRowObj['uistatusstate'] = "None";
+                        }
+
+                        oRowObj = Object.assign(oRowObj, JSON.parse(oRes.value[iIdx].claimActualData));
+                        for (const iterator of ["CreateDate","FailureDate","RepairStart","RepairEnd","ManDate","SubDate"]) {
+                            oRowObj[iterator] = typeof oRowObj[iterator] === 'string' ? new Date(oRowObj[iterator]) : oRowObj[iterator]; 
+                        }
+                        aFinal.push(oRowObj);
+                    }
+                    oLocalModel.setProperty("/Results", $.extend(true, [], aFinal));
+                    that.loadBusyIndicator(busyIndicatorId, false);
+                    resolve();
+                }).catch(error =>  {
+                    that.loadBusyIndicator(busyIndicatorId, false);
+                    reject(error);
+                });
+                /*oCAPMMOdel.dataRequested("/ClaimReportSet", {
+                    filters: aFilter,
+                    success: async function (oData) {
+                        /*
+                        if (oData.results.length > 0) {
+                            var aUniqueClaims = [...new Set(oData.results.map(function (el) {
+                                return el.Clmno;
+                            }))];
+                            for (var i = 0; i < aUniqueClaims.length; i++) {
+                                var aItems = oData.results.filter(function (el) {
+                                    return el.Clmno === aUniqueClaims[i];
+                                });
+                                if (aItems.length > 0) {
+                                    var oHeader = aItems[0];
+                                    oHeader.Items = $.extend(true, [], aItems);
+                                    oHeader.ActualData = JSON.stringify(aItems[0]);
+                                    aFinal.push(oHeader);
+                                }
+                            }
+                            //oLocalModel.setProperty("/Results", $.extend(true, [], aFinal));
+                            resolve(await that._getClaimsFromCAPMPromise(busyIndicatorId, $.extend(true, [], aFinal)));
+                        } else {
+                            resolve([]);
+
+                    f  }
+                        
+                        that.loadBusyIndicator(busyIndicatorId, false);
+                    },
+                    error:function (oError) {
+                        that.loadBusyIndicator(busyIndicatorId, false);
+                        reject(oError);
+                    }
+                });*/
+
+       },
+       _getWarrantySetFromSAPPromise2: function(busyIndicatorId, claimId) {
+
+       },
+        _getClaimsFromCAPMPromise2: function (busyIndicatorId, claimId) {
+            return new Promise((resolve, reject) => {
+                var oLocalModel = this.getModel('LocalModel'),
+                    oFrmDate = oLocalModel.getProperty('/FromDate'),
+                    oToDate  = oLocalModel.getProperty('/ToDate'),
+                    oMultiUiStatus = oLocalModel.getProperty("/MultiUiStatus"),
+                    aFilter = [];
+                
+                aFilter = this.getClaimIdFilter(aFilter,claimId);
+                
+            });
+        }
     });
 
 });

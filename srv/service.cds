@@ -7,4 +7,6 @@ service ZCLAIMAPPROVALSRV @(requires:'authenticated-user') {
   entity ClaimApproverSet as projection on schema.ClaimApprovers;
 
   entity CommentSet as projection on schema.Comments;
+
+  entity ClaimReportSet as projection on schema.ClaimReport;
 }
