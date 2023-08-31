@@ -470,7 +470,7 @@ sap.ui.define([
                     this._getWarrantyClaimSet(oClaimReportSet).then(oWarrantySet => {
                         this._mapWarrantyTable(oClaimReportSet,oWarrantySet);
                         this.loadBusyIndicator(busyIndicatorId, false);
-                        resolve();
+                        resolve(); 
                     }).catch(oError => {
                         this.loadBusyIndicator(busyIndicatorId, false);
                         reject(oError);
