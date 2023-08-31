@@ -141,7 +141,7 @@ sap.ui.define([
                     try {
                         var bIsRequestor = oLocalModel.getProperty("/IsRequestorLoggedIn");
                         if(bIsRequestor){
-                            await this._getWarrantyListPromise("ObjectPageLayout", sClaim);
+                            await this._getWarrantyListPromise2("ObjectPageLayout", sClaim);
                         } else {
                             await this._getClaimsFromCAPMPromise("ObjectPageLayout");
                         }
@@ -155,25 +155,13 @@ sap.ui.define([
                 oLocalModel.setProperty("/Comment", "");
                 this.getView().setBindingContext(oLocalModel.createBindingContext("/Results/"+iSelIdx), "LocalModel");
                 var oBindingCtx = this.getView().getBindingContext("LocalModel").getObject();
-                var sGUID = oBindingCtx.id;
                 this._getComments();
                 
                 if(oBindingCtx.IsRequestor){
                     this._getApprovalSequence();
 
                     Promise.allSettled([this._getDefectsList(),this._getDefectsVersionList()])
-                        .then(values => {
-                            var sBindingCtxPath = that.getView().getBindingContext('LocalModel').getPath();
-                            var oBindingCtx = that.getView().getBindingContext('LocalModel').getObject();
-                            var oActualData = JSON.parse(oBindingCtx.ActualData)
-                            if  (values[0] && values[0].status === 'fulfilled') {
-                                oActualData['DefectList'] = values[0].value;
-                            }
-                            if  (values[1] && values[1].status === 'fulfilled') {
-                                oActualData['DefectVersionList'] =  values[1].value;
-                            }
-                            oLocalModel.setProperty(sBindingCtxPath+"/ActualData", JSON.stringify(oActualData));
-                        })
+
 
                     oLocalModel.setProperty("/showProcessFlow", true);
                 }
