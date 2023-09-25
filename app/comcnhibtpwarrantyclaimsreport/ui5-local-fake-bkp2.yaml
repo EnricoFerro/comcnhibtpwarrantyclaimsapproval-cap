@@ -16,10 +16,8 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: /sap
-            url: https://trn.dncsrl.com:44301
-            client: "100"
-            destination: ERPDQP
+          - path: /here
+            url: http://localhost
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -32,8 +30,11 @@ server:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         backend:
           - path: /api
-            url: http://localhost:4004
+            url: https://a6cbc8e5trial-dev-claimapprovalsrv-srv.cfapps.us10-001.hana.ondemand.com
             destination: CLAIMAPPROVAL_CAPMSRV
+          - path: /sap
+            url: https://a6cbc8e5trial-dev-mockebanapp-srv.cfapps.us10-001.hana.ondemand.com
+            destination: ERPDQP
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:

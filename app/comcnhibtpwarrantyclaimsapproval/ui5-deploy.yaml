@@ -12,9 +12,14 @@ builder:
       - "/test/**"
       - "/localService/**"
   customTasks:
+  - name: webide-extension-task-updateManifestJson
+    afterTask: replaceVersion
+    configuration:
+      appFolder: webapp
+      destDir: dist
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: comcnhibtpwarrantyclaimsapproval
+      archiveName: comdncsrlshipmentbayplanningcalendar
       additionalFiles:
       - xs-app.json
