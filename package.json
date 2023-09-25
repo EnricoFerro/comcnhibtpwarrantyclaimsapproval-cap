@@ -6,12 +6,12 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^6",
+    "@sap/cds": "~7",
     "express": "^4",
     "@sap/xssec": "^3",
     "passport": "^0",
     "hdb": "^0.19.0",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21"
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7"
 
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "node": "^18"
   },
   "scripts": {
-    "start": "cds run",
+    "start": "cds-serve",
     "mock": "cds watch --with-mocks",
     "build:cds": "cds build --production",
     "build:mta": "mbt build -t gen --mtar mta.tar",
