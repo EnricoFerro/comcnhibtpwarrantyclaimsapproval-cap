@@ -20,7 +20,7 @@ builder:
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: comdncsrlshipmentbayplanningcalendar
+      archiveName: comcnhibtpwarrantyclaimsreport
       additionalFiles:
       - xs-app.json
 
