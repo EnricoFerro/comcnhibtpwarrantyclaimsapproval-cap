@@ -7,12 +7,12 @@
             <!--<smartForm:SmartForm editable="true" id="form" editTogglable="false">
                 <smartForm:Group id="G1" >
                     <smartForm:GroupElement>
-                        <smartMultiInput:SmartMultiInput value="{LocalModel>/Clmno}"  entitySet="WarrantySet" supportRanges="false"  mandatory="false" textLabel="{i18n>selectClmno}"/>
+                        <smartMultiInput:SmartMultiInput value="{LocalModel>/Clmno}"  entitySet="WarrantyListSet" supportRanges="false"  mandatory="false" textLabel="{i18n>selectClmno}"/>
                     </smartForm:GroupElement>
                 </smartForm:Group>
             </smartForm:SmartForm>-->
             <smartfilterbar:SmartFilterBar id="smartFilterBar" 
-                entitySet="WarrantySet" 
+                entitySet="WarrantyListSet" 
                 persistencyKey="smartFilterBar"
                 showClearOnFB="true"
                 liveMode="false"
@@ -30,7 +30,7 @@
                                 <smartfilterbar:customControl>
                                     <!--<smartMultiInput:SmartMultiInput id="Main_MI_Clmno"  width="280px" 
                                         editable="true"  
-                                        entitySet="WarrantySet"
+                                        entitySet="WarrantyListSet"
                                         supportRanges="true" >
                                     </smartMultiInput:SmartMultiInput>-->
                                     <MultiInput id="Main_MI_Clmno"  width="280px" 
@@ -52,7 +52,7 @@
                                 <smartfilterbar:customControl>
                                     <!--<smartMultiInput:SmartMultiInput id="Main_MI_Clmno"  width="280px" 
                                         editable="true"  
-                                        entitySet="WarrantySet"
+                                        entitySet="WarrantyListSet"
                                         supportRanges="true" >
                                     </smartMultiInput:SmartMultiInput>-->
                                     <MultiInput id="Main_MI_Clmno_VH"  width="280px" 
@@ -98,7 +98,7 @@
 						</smartfilterbar:ControlConfiguration>
                 </smartfilterbar:controlConfiguration>
             </smartfilterbar:SmartFilterBar>
-            <smartTable:SmartTable id="claimsSmartTbl" busyIndicatorDelay="0"  entitySet="WarrantySet" tableBindingPath="LocalModel>/Results" tableType="Table" showTablePersonalisation="true" useVariantManagement="true"
+            <smartTable:SmartTable id="claimsSmartTbl" busyIndicatorDelay="0"  entitySet="WarrantyListSet" tableBindingPath="LocalModel>/Results" tableType="Table" showTablePersonalisation="true" useVariantManagement="true"
                             header="{LocalModel>/claimTblTitle}" persistencyKey="claimsSmartTbl" enableAutoBinding="false"
                             showRowCount="false" showFullScreenButton="true"  enableExport="true" ignoredFields="VkorgText,PartnerText,WtypeText,BukrsText" > 
                 <smartTable:customToolbar>
@@ -112,7 +112,7 @@
                                     <Token key="{LocalModel>key}" text="{LocalModel>text}" />
                                 </tokens>
                         </MultiInput>-->
-                        <!--<smartMultiInput:SmartMultiInput id="Main_SMI_Clmno" value="{LocalModel>Clmno}" change="onRefresh" entitySet="WarrantySet" supportRanges="true"  mandatory="false" textLabel="{i18n>selectClmno}"/>-->
+                        <!--<smartMultiInput:SmartMultiInput id="Main_SMI_Clmno" value="{LocalModel>Clmno}" change="onRefresh" entitySet="WarrantyListSet" supportRanges="true"  mandatory="false" textLabel="{i18n>selectClmno}"/>-->
                         <!--<Label text="{i18n>selectRange}:" visible="{LocalModel>/IsRequestorLoggedIn}" />-->
                         <!--<DateRangeSelection class="sapUiTinyMarginBegin" visible="{LocalModel>/IsRequestorLoggedIn}"
                                 id="Main_DRS" dateValue="{LocalModel>/FromDate}" secondDateValue="{LocalModel>/ToDate}" showCurrentDateButton="true" showFooter="true" width="auto"

@@ -1,7 +1,7 @@
 using com.cnhi.btp.warrantysrvs from '../db/warranty';
 
 
-@path: 'ZBTP_POC3_GTW_SRV'
+@path: '/ZBTP_POC3_GTW_SRV'
 // @requires: 'authenticated-user'
 service WarrantyService {
 
@@ -20,6 +20,9 @@ service WarrantyService {
 
  entity DefectVersionSet
     as projection on  warrantysrvs.DefectVersionSet;
+
+ entity WarrantyListSet
+    as projection on  warrantysrvs.WarrantySet;    
 
 
  entity WarrantySet
