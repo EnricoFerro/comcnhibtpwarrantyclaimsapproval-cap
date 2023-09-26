@@ -116,7 +116,7 @@ sap.ui.define([
                     }));
                 } 
                 oLocalModel.setProperty("/Results", []);
-                oDataModel.read("/WarrantySet", {
+                oDataModel.read("/WarrantyListSet", {
                     filters: aFilter,
                     success: async function (oData) {
                         if (oData.results.length > 0) {
@@ -433,7 +433,7 @@ sap.ui.define([
                     value1: item.claimNo,
                     value2: null,
                 })); 
-                oModel.read("/WarrantySet", {
+                oModel.read("/WarrantyListSet", {
                     filters: aFilters,
                     success: function (oRes) {
                         resolve(oRes.results);

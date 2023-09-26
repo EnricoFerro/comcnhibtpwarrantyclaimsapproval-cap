@@ -440,7 +440,7 @@ sap.ui.define([
                     MessageToast.show(this.getResourceBundle().getText('warMsg3'));
                     return;
                 }
-                var sPath = oDataModel.createKey("/WarrantySet",{
+                var sPath = oDataModel.createKey("/WarrantyListSet",{
                     Clmno: oBindingCtx.Clmno
                 });
                 var oPayload = {

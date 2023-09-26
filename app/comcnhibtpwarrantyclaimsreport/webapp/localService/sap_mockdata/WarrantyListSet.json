@@ -28,8 +28,8 @@
         "DefectCode": "000MANDATORYF0",
         "Decision": "T",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200008413')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200008413')"
         }
     },
     {
@@ -61,8 +61,8 @@
         "DefectCode": "000MANDATORYF0",
         "Decision": "T",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200008414')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200008414')"
         }
     },
     {
@@ -94,8 +94,8 @@
         "DefectCode": "00000300ZZ0010",
         "Decision": "TD",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200042412')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200042412')"
         }
     },
     {
@@ -127,8 +127,8 @@
         "DefectCode": "00000300ZZ0010",
         "Decision": "TD",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200042414')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200042414')"
         }
     },
     {
@@ -160,8 +160,8 @@
         "DefectCode": "00055510AF3010",
         "Decision": "P",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200380961')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200380961')"
         }
     },
     {
@@ -193,8 +193,8 @@
         "DefectCode": "00055510AF3010",
         "Decision": "P",
         "__metadata": {
-            "type": "WarrantyService.WarrantySet",
-            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantySet('302200380962')"
+            "type": "WarrantyService.WarrantyListSet",
+            "uri": "https://data-network-consulting-s-r-l--dev-dbxhsocp-dev-mockebanapp-srv.cfapps.eu20-001.hana.ondemand.com/sap/opu/odata/sap/ZBTP_POC3_GTW_SRV/WarrantyListSet('302200380962')"
         }
     }
 ]

@@ -29,7 +29,8 @@
     "build:mta": "mbt build -t gen --mtar mta.tar",
     "deploy": "cf deploy gen/mta.tar",
     "start-watch": "cds watch --open launchpage.html?sap-ui-xx-viewCache=false",
-    "deploy:mta": "npm run build:cds && npm run build:mta && npm run deploy"
+    "deploy:mta": "npm run build:cds && npm run build:mta && npm run deploy",
+    "undeploy": "cf undeploy claimapprovalsrv --delete-services --delete-service-keys --delete-service-brokers"
   },
   "sapux": [
     "app/comcnhibtpwarrantyclaimsapproval",

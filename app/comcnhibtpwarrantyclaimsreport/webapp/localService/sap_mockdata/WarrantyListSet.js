@@ -6,7 +6,7 @@ module.exports = {
         return data;
     },
     getEntityInterface: function(entityName) {
-        const data = require("./WarrantySet.json");
+        const data = require("./WarrantyListSet.json");
         console.log('Get data ' + JSON.stringify(data));
         return data;
     },
