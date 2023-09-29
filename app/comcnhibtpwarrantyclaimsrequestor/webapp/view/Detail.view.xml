@@ -526,7 +526,11 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection titleUppercase="false">
                         <List id="idListAttachments"
-                        showSeparators="Inner">
+                        showSeparators="Inner"
+                        items="{
+                            path: '/AttachmentSet' ,
+                            filters: []
+                        }" >
                             <headerToolbar>
                                 <Toolbar>
                                     <u:FileUploader useMultipart="false" id="__fileUploader" tooltip="{i18n>Detail_TBL_Attachment_FLU_Tooltip}" uploadAborted="onUploadAborted" uploadProgress="onAttachmentFileUploadProgress" uploadComplete="onAttachmentFileUploadComplete" change="onAttachmentFileChange"/>

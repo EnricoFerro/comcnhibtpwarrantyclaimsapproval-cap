@@ -134,14 +134,14 @@ sap.ui.define([
             _onObjectMatched : async function (oEvent) {
                 var that = this;
                 var oArguments =  oEvent.getParameter("arguments");
-                var sClaim = oArguments.claim;
+                var sID = oArguments.id;
                 var oLocalModel = this.getModel("LocalModel");
                 var aResult = oLocalModel.getProperty("/Results");
                 if (aResult == undefined) {
                     try {
                         var bIsRequestor = oLocalModel.getProperty("/IsRequestorLoggedIn");
                         if(bIsRequestor){
-                            await this._getWarrantyListPromise2("ObjectPageLayout", sClaim);
+                            await this._getWarrantyListPromise2("ObjectPageLayout", { id: [ sID ]});
                         } else {
                             await this._getClaimsFromCAPMPromise("ObjectPageLayout");
                         }
@@ -150,7 +150,7 @@ sap.ui.define([
                     }
                 }
                 var iSelIdx = oLocalModel.getProperty("/Results").findIndex(function(el){
-                    return el.Clmno === sClaim;
+                    return el.id === sID;
                 });
                 oLocalModel.setProperty("/Comment", "");
                 this.getView().setBindingContext(oLocalModel.createBindingContext("/Results/"+iSelIdx), "LocalModel");
@@ -272,32 +272,10 @@ sap.ui.define([
                 }));
                 var oListAttachments = oView.byId('idListAttachments');
                 var oListItemBinding = oListAttachments.getBinding("items");
-                if (oListItemBinding === undefined){
-                    oListAttachments.bindItems({
-                        path: "/AttachmentSet",
-                        //filters: aFilter,
-                        template: oView.byId('idListAttachmentsItem'),
-                        templateShareable: false,
-                        events: {
-                            dataRequested: function () {
-                            oView.byId("idListAttachments").setBusy(true)
-                            },
-                            dataReceived: function () {
-                            //oView.setBusy(false);
-                            oView.byId("idListAttachments").setBusy(false)
-                            }
-                        }
-                    });
-                    var oListItemBinding = oListAttachments.getBinding("items");
-                    oListItemBinding.filter(aFilter);
-                    oView.byId("idListAttachments").setBusy(true)
-                } else {
-                    oListItemBinding.aFilters = null;
-                    oListItemBinding.filter(aFilter);
-                    this.getView().getModel().refresh(true);
-                    oView.byId("idListAttachments").setBusy(true)
-                }
-                    
+                oListItemBinding.filter(aFilter);
+                oListAttachments.updateAggregation('items',sap.ui.model.ChangeReason.Refresh);
+                oListAttachments.getModel().updateBindings(true);
+                oListAttachments.getModel().refresh(true);
             },
             onAttachmentDownload: function(oEvent) {
                 var sSrc = oEvent.getSource().data('downall');

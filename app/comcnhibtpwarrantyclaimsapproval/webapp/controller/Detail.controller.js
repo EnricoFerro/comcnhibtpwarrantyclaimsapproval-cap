@@ -285,32 +285,10 @@ sap.ui.define([
                 }));
                 var oListAttachments = oView.byId('idListAttachments');
                 var oListItemBinding = oListAttachments.getBinding("items");
-                if (oListItemBinding === undefined){
-                    oListAttachments.bindItems({
-                        path: "/AttachmentSet",
-                        //filters: aFilter,
-                        template: oView.byId('idListAttachmentsItem'),
-                        templateShareable: false,
-                        events: {
-                            dataRequested: function () {
-                            oView.byId("idListAttachments").setBusy(true)
-                            },
-                            dataReceived: function () {
-                            //oView.setBusy(false);
-                            oView.byId("idListAttachments").setBusy(false)
-                            }
-                        }
-                    });
-                    var oListItemBinding = oListAttachments.getBinding("items");
-                    oListItemBinding.filter(aFilter);
-                    oView.byId("idListAttachments").setBusy(true)
-                } else {
-                    oListItemBinding.aFilters = null;
-                    oListItemBinding.filter(aFilter);
-                    this.getView().getModel().refresh(true);
-                    oView.byId("idListAttachments").setBusy(true)
-                }
-                    
+                oListItemBinding.filter(aFilter);
+                oListAttachments.updateAggregation('items',sap.ui.model.ChangeReason.Refresh);
+                oListAttachments.getModel().updateBindings(true);
+                oListAttachments.getModel().refresh(true);
             },
             onAttachmentDownload: function(oEvent) {
                 var sSrc = oEvent.getSource().data('downall');
@@ -341,11 +319,11 @@ sap.ui.define([
                             var path = `/AttachmentSet(Clmno='${oSrcModelItem.Clmno}',FileName='${ oSrcModelItem.FileName }')`;
                             oDataModel.remove(path, {
                                 success: function (data, response) {
-                                    MessageBox.success(this.getResourceBundle.getText("Detail_TBL_Attachment_MSG_Confirm_Success"));
+                                    MessageBox.success(that.getResourceBundle().getText("Detail_TBL_Attachment_MSG_Confirm_Success"));
                                     that.getView().getModel().refresh(true);
                                 },
                                 error: function (error) {
-                                    MessageBox.error(this.getResourceBundle.getText("Detail_TBL_Attachment_MSG_Confirm_Error"));
+                                    MessageBox.error(that.getResourceBundle().getText("Detail_TBL_Attachment_MSG_Confirm_Error"));
                                     that.getView().getModel().refresh(true);
                                 }
                             });

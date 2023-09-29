@@ -12,7 +12,7 @@
 |**Application Title**<br>Warranty Claims Approval|
 |**Namespace**<br>com.cnhi.btp|
 |**UI5 Theme**<br>sap_fiori_3|
-|**UI5 Version**<br>1.102.1|
+|**UI5 Version**<br>1.108.23|
 |**Enable Code Assist Libraries**<br>False|
 |**Add Eslint configuration**<br>False|
 
