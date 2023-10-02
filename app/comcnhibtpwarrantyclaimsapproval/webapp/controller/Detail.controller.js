@@ -770,16 +770,44 @@ sap.ui.define([
             },
 
             onDefectDetailOpen: function (oEvent) {
+                var that = this;
                 if (!this.oDefectDetail) {
                     this.oDefectDetail = sap.ui.xmlfragment("com.cnhi.btp.warrantyclaimsapproval.fragment.DefectExposed", this);
                     // to get access to the controller's model
                     this.getView().addDependent(this.oDefectDetail);
                 }
-                var oPath = oEvent.getSource().getParent().oBindingContexts.LocalModel.getPath();
-                var oModel = oEvent.getSource().getParent().oBindingContexts.LocalModel.getModel();
-                this.oDefectDetail.setBindingContext(new sap.ui.model.Context(oModel, oPath), "LocalModel");
-                //this.oItemDetailDlg.setBindingContext(oEvent.getSource().getParent().oBindingContexts);
-                this.oDefectDetail.open();
+                var oPath = oEvent.getSource().getParent().getBindingContext("LocalModel").getPath();
+                var oLocalModel = oEvent.getSource().getParent().getBindingContext("LocalModel").getModel();
+                var oModel = this.getOwnerComponent().getModel();
+                var oDefectDetail = oLocalModel.getProperty(oPath);
+                const aFilter = [
+                    new Filter({
+                        path: "DefectCode",
+                        operator: FilterOperator.EQ,
+                        value1: oDefectDetail.DefectCode,
+                        value2: undefined
+                    })
+                ]
+                oModel.read("/DefectExposedSet", {
+                    filters: aFilter,
+                    success: function (oData) {
+                        oLocalModel.setProperty(oPath + "/DefectExposed", oData);
+                        that.oDefectDetail.setBindingContext(new sap.ui.model.Context(oLocalModel, oPath), "LocalModel");
+                        //this.oItemDetailDlg.setBindingContext(oEvent.getSource().getParent().oBindingContexts);
+                        that.oDefectDetail.open();
+                    },
+                    error: function (oData) {
+                        //Message is managed by 
+                        /**
+                        MessageBox.error("Error message", {
+                            title: "Error",
+                            details: that.getResourceBundle().getText("ERROR_DEFECTEXPOSED_ERROR", oDefectDetail.DefectCode),
+                            contentWidth: "100px"
+                        });
+                        */
+                    }
+                });
+
             },
 
 
