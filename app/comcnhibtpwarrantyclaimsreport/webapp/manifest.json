@@ -85,7 +85,7 @@
             "fullWidth": true
           },
         "dependencies": {
-            "minUI5Version": "1.102.1",
+            "minUI5Version": "1.108.23",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
@@ -169,7 +169,7 @@
                   },
                   {
                     "name": "detail",
-                    "pattern": "detail/{claim}:?query:",
+                    "pattern": "detail/{id}:?query:",
                     "target": [
                       "Detail"
                     ]
@@ -203,8 +203,10 @@
         "public": true,
         "service": "claimapprovalsrv.service"
     },
+    "sap.platform.cf": {
+        "ui5VersionNumber": "1.108.23"
+    },
     "sap.cloud.portal": {
         "claimsreport-display": {}
-
     }
 }

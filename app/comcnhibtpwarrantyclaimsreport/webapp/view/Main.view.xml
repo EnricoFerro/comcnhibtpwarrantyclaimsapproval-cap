@@ -172,7 +172,7 @@
                             </ui:template>
                         </ui:Column>
                         
-                        <ui:Column hAlign="Begin" filterProperty="CreateDate" sortProperty="CreateDate" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}" >
+                        <ui:Column hAlign="Begin" filterProperty="CreateDate" sortProperty="CreateDate" visible="false" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}" >
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "CreateDate", "columnIndex":"4", "filterProperty": "CreateDate", "sortProperty": "CreateDate", "type":"string", "leadingProperty": "CreateDate"}'/>
                             </ui:customData> 
@@ -181,7 +181,16 @@
                                 <Text text="{path: 'LocalModel>CreateDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
                             </ui:template>
                         </ui:Column>
-                        <ui:Column hAlign="Begin" filterProperty="FailureDate" sortProperty="FailureDate">
+                        <ui:Column hAlign="Begin" filterProperty="SubDate" sortProperty="SubDate" visible="true"  filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}" >
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "SubDate", "columnIndex":"4", "filterProperty": "SubDate", "sortProperty": "SubDate", "type":"string", "leadingProperty": "SubDate"}'/>
+                            </ui:customData>
+                            <Label design="Bold"  text="{i18n>Main_TBL_LBL_SubDate}"/>
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>SubDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="FailureDate" sortProperty="FailureDate" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "FailureDate", "columnIndex":"5", "filterProperty": "FailureDate", "sortProperty": "FailureDate", "type":"string", "leadingProperty": "FailureDate"}'/>
                             </ui:customData>
@@ -190,7 +199,7 @@
                                 <Text text="{path: 'LocalModel>FailureDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
                             </ui:template>
                         </ui:Column>
-                        <ui:Column hAlign="Begin" filterProperty="RepairStart" sortProperty="RepairStart">
+                        <ui:Column hAlign="Begin" filterProperty="RepairStart" sortProperty="RepairStart" visible="false" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "RepairStart", "columnIndex":"6", "filterProperty": "RepairStart", "sortProperty": "RepairStart", "type":"string", "leadingProperty": "RepairStart"}'/>
                             </ui:customData>
@@ -199,7 +208,7 @@
                                 <Text text="{path: 'LocalModel>RepairStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
                             </ui:template>
                         </ui:Column>
-                        <ui:Column hAlign="Begin" filterProperty="RepairEnd" sortProperty="RepairEnd" visible="false">
+                        <ui:Column hAlign="Begin" filterProperty="RepairEnd" sortProperty="RepairEnd" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "RepairEnd", "columnIndex":"7", "filterProperty": "RepairEnd", "sortProperty": "RepairEnd", "type":"string", "leadingProperty": "RepairEnd"}'/>
                             </ui:customData>
@@ -341,15 +350,6 @@
                             <Label design="Bold"  text="{i18n>Main_TBL_LBL_Partner}"/>
                             <ui:template>
                                 <Text text="{LocalModel>Partner} - {LocalModel>PartnerText}"  />                                 
-                            </ui:template>
-                        </ui:Column>
-                        <ui:Column hAlign="Begin" filterProperty="SubDate" sortProperty="SubDate" visible="false">
-                            <ui:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "SubDate", "columnIndex":"20", "filterProperty": "SubDate", "sortProperty": "SubDate", "type":"string", "leadingProperty": "SubDate"}'/>
-                            </ui:customData>
-                            <Label design="Bold"  text="{i18n>Main_TBL_LBL_SubDate}"/>
-                            <ui:template>
-                                <Text text="{path: 'LocalModel>SubDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
                             </ui:template>
                         </ui:Column>
                         <ui:Column hAlign="Begin" filterProperty="ObjRef" sortProperty="ObjRef" visible="false">

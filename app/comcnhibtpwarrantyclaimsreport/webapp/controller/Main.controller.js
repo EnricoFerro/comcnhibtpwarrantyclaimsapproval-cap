@@ -209,7 +209,7 @@ sap.ui.define([
 
                 var bIsRequestor = this._oLocalModel.getProperty("/IsRequestorLoggedIn");
                 if(bIsRequestor){
-                    this._getWarrantyListPromise2("page",oClmnoFilters.concat(oClmnoVHFilters));
+                    this._getWarrantyListPromise2("page",{ claimNo: oClmnoFilters.concat(oClmnoVHFilters) });
                 } else {
                     //Call if logged in user is not the requestor
                     this._getClaimsFromCAPMPromise("page",oClmnoFilters.concat(oClmnoVHFilters));
@@ -226,7 +226,7 @@ sap.ui.define([
                 var oSrc = oEvent.getSource();
                 var oBindingObj = oSrc.getBindingContext("LocalModel").getObject();
                 this.getRouter().navTo("detail",{
-                    claim: oBindingObj.Clmno
+                    id: oBindingObj.id
                 });
             },
 

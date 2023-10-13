@@ -285,32 +285,10 @@ sap.ui.define([
                 }));
                 var oListAttachments = oView.byId('idListAttachments');
                 var oListItemBinding = oListAttachments.getBinding("items");
-                if (oListItemBinding === undefined){
-                    oListAttachments.bindItems({
-                        path: "/AttachmentSet",
-                        //filters: aFilter,
-                        template: oView.byId('idListAttachmentsItem'),
-                        templateShareable: false,
-                        events: {
-                            dataRequested: function () {
-                            oView.byId("idListAttachments").setBusy(true)
-                            },
-                            dataReceived: function () {
-                            //oView.setBusy(false);
-                            oView.byId("idListAttachments").setBusy(false)
-                            }
-                        }
-                    });
-                    var oListItemBinding = oListAttachments.getBinding("items");
-                    oListItemBinding.filter(aFilter);
-                    oView.byId("idListAttachments").setBusy(true)
-                } else {
-                    oListItemBinding.aFilters = null;
-                    oListItemBinding.filter(aFilter);
-                    this.getView().getModel().refresh(true);
-                    oView.byId("idListAttachments").setBusy(true)
-                }
-                    
+                oListItemBinding.filter(aFilter);
+                oListAttachments.updateAggregation('items',sap.ui.model.ChangeReason.Refresh);
+                oListAttachments.getModel().updateBindings(true);
+                oListAttachments.getModel().refresh(true);
             },
             onAttachmentDownload: function(oEvent) {
                 var sSrc = oEvent.getSource().data('downall');
@@ -341,11 +319,11 @@ sap.ui.define([
                             var path = `/AttachmentSet(Clmno='${oSrcModelItem.Clmno}',FileName='${ oSrcModelItem.FileName }')`;
                             oDataModel.remove(path, {
                                 success: function (data, response) {
-                                    MessageBox.success(this.getResourceBundle.getText("Detail_TBL_Attachment_MSG_Confirm_Success"));
+                                    MessageBox.success(that.getResourceBundle().getText("Detail_TBL_Attachment_MSG_Confirm_Success"));
                                     that.getView().getModel().refresh(true);
                                 },
                                 error: function (error) {
-                                    MessageBox.error(this.getResourceBundle.getText("Detail_TBL_Attachment_MSG_Confirm_Error"));
+                                    MessageBox.error(that.getResourceBundle().getText("Detail_TBL_Attachment_MSG_Confirm_Error"));
                                     that.getView().getModel().refresh(true);
                                 }
                             });
@@ -792,16 +770,44 @@ sap.ui.define([
             },
 
             onDefectDetailOpen: function (oEvent) {
+                var that = this;
                 if (!this.oDefectDetail) {
                     this.oDefectDetail = sap.ui.xmlfragment("com.cnhi.btp.warrantyclaimsapproval.fragment.DefectExposed", this);
                     // to get access to the controller's model
                     this.getView().addDependent(this.oDefectDetail);
                 }
-                var oPath = oEvent.getSource().getParent().oBindingContexts.LocalModel.getPath();
-                var oModel = oEvent.getSource().getParent().oBindingContexts.LocalModel.getModel();
-                this.oDefectDetail.setBindingContext(new sap.ui.model.Context(oModel, oPath), "LocalModel");
-                //this.oItemDetailDlg.setBindingContext(oEvent.getSource().getParent().oBindingContexts);
-                this.oDefectDetail.open();
+                var oPath = oEvent.getSource().getParent().getBindingContext("LocalModel").getPath();
+                var oLocalModel = oEvent.getSource().getParent().getBindingContext("LocalModel").getModel();
+                var oModel = this.getOwnerComponent().getModel();
+                var oDefectDetail = oLocalModel.getProperty(oPath);
+                const aFilter = [
+                    new Filter({
+                        path: "DefectCode",
+                        operator: FilterOperator.EQ,
+                        value1: oDefectDetail.DefectCode,
+                        value2: undefined
+                    })
+                ]
+                oModel.read("/DefectExposedSet", {
+                    filters: aFilter,
+                    success: function (oData) {
+                        oLocalModel.setProperty(oPath + "/DefectExposed", oData);
+                        that.oDefectDetail.setBindingContext(new sap.ui.model.Context(oLocalModel, oPath), "LocalModel");
+                        //this.oItemDetailDlg.setBindingContext(oEvent.getSource().getParent().oBindingContexts);
+                        that.oDefectDetail.open();
+                    },
+                    error: function (oData) {
+                        //Message is managed by 
+                        /**
+                        MessageBox.error("Error message", {
+                            title: "Error",
+                            details: that.getResourceBundle().getText("ERROR_DEFECTEXPOSED_ERROR", oDefectDetail.DefectCode),
+                            contentWidth: "100px"
+                        });
+                        */
+                    }
+                });
+
             },
 
 

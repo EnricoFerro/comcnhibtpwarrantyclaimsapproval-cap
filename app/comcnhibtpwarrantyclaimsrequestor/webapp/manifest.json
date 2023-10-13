@@ -81,7 +81,7 @@
             "fullWidth": true
           },
         "dependencies": {
-            "minUI5Version": "1.102.1",
+            "minUI5Version": "1.108.23",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
@@ -111,9 +111,7 @@
                     "defaultBindingMode": "TwoWay",
                     "defaultUpdateMethod": "PUT",
                     "defaultCountMode": "Inline",
-                    "refreshAfterChange": false,
-                    "useBatch": false
-
+                    "refreshAfterChange": false
                 }
               },
             "LocalModel": {
@@ -190,6 +188,9 @@
     "sap.cloud": {
         "public": true,
         "service": "claimapprovalsrv.service"
+    },
+    "sap.platform.cf": {
+        "ui5VersionNumber": "1.108.23"
     },
     "sap.cloud.portal": {
         "claimsapproval-display": {},

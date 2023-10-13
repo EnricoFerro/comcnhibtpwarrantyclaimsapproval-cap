@@ -272,7 +272,36 @@ sap.ui.define([
                 }.bind(this));
             });
         },
-
+        getIDFilter: function(aFilter, Id) {
+            if ( aFilter == undefined || aFilter == null) {
+                aFilter = [];
+            }
+            if (Id != undefined || Id != null) {
+                if (Array.isArray(Id)) {
+                    for (const item of Id) {
+                        if ( item.range.exclude  && item.range.operation === "EQ" ) {
+                            item.range.operation = "NE"
+                        }
+                        if ( item.range.operation !== "Empty") {
+                            aFilter.push(new Filter({
+                                path: "id",
+                                operator: item.range.operation,
+                                value1: item.range.value1,
+                                value2: item.range.value2,
+                            }));
+                        }
+                    }
+                } else {
+                    aFilter.push(new Filter({
+                        path: "id",
+                        operator: FilterOperator.EQ,
+                        value1: Id,
+                        value2: undefined
+                    }));
+                }
+            }
+            return aFilter;
+        },
         getClaimNoFilter: function(aFilter, claimId) {
             if ( aFilter == undefined || aFilter == null) {
                 aFilter = [];
@@ -444,11 +473,14 @@ sap.ui.define([
                 })
             });
         },
-        _getClaimReportSet: function(claimId) {
+        _getClaimReportSet: function(claimFilter) {
             var oLocalModel = this.getOwnerComponent().getModel('LocalModel'),
                 oCAPMMOdelv2 = this.getOwnerComponent().getModel('ClaimApprovalCAPV2'),  
                 aFilters = [];
-            aFilters = this.getClaimNoFilter(aFilters, claimId);
+            var claimIds = claimFilter.claimId ? claimFilter.claimId : [];
+            var IDs = claimFilter.id ? claimFilter.IDs : [];
+            aFilters = this.getIDFilter(aFilters, IDs);
+            aFilters = this.getClaimNoFilter(aFilters, claimIds);
             aFilters = this.getDateFilter(aFilters,oLocalModel);
             aFilters = this.getStatusFilter(aFilters,oLocalModel);
             return new Promise((resolve, reject) => {
@@ -463,10 +495,10 @@ sap.ui.define([
                 });
             });
         },
-        _getWarrantyListPromise2: function(busyIndicatorId, claimId) {
+        _getWarrantyListPromise2: function(busyIndicatorId, claimFilter) {
             this.loadBusyIndicator(busyIndicatorId, true);
             return new Promise((resolve,reject) => {
-                this._getClaimReportSet(claimId).then(oClaimReportSet => {
+                this._getClaimReportSet(claimFilter).then(oClaimReportSet => {
                     this._getWarrantyClaimSet(oClaimReportSet).then(oWarrantySet => {
                         this._mapWarrantyTable(oClaimReportSet,oWarrantySet);
                         this.loadBusyIndicator(busyIndicatorId, false);
