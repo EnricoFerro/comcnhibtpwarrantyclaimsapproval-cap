@@ -15,7 +15,7 @@
         "@sap/ux-ui5-tooling": "^1.11.1",
         "@ui5/cli": "^3.6.1",
         "mbt": "^1.2.18",
-        "ui5-task-zipper": "^3.6.1"
+        "ui5-task-zipper": "^3.0.3"
     },
     "scripts": {
         "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#warrantyclaimsrequestor-display\"",
