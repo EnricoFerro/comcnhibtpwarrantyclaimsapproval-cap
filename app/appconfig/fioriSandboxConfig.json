@@ -1,0 +1,172 @@
+{
+    "services": {
+        "Container": {
+                "config": {
+                    "id": "john.doe@example.com",
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                }
+
+        },
+        "LaunchPage": {
+            "adapter": {
+                "config": {
+                    "catalogs": [
+                        {
+                            "id": "SAP-BTP",
+                            "title": "My SAP BTP Apps",
+                            "isPreset": true,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsapproval-inbound",
+                                    "tileType": "sap.ushell.ui.tile.DynamicTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Approval",
+                                        "targetURL": "#claimsapproval-display",
+                                        "icon": "sap-icon://validate",
+                                        "indicatorDataSource": {
+                                            "dataSource": "ZCLAIMAPPROVALSRV",
+                                            "path": "ClaimApproverSet/$count",
+                                            "refresh": 120
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsrequestor-inbound",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Approval - Requestor",
+                                        "targetURL": "#claimsrequestor-display",
+                                        "icon": "sap-icon://validate"
+                                    }
+                                },
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsareport-inbound",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Report",
+                                        "targetURL": "#claimsreport-display",
+                                        "icon": "sap-icon://chart-table-view"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "groups": [
+                        {
+                            "id": "SAP-BTP",
+                            "title": "My SAP BTP Apps",
+                            "isPreset": true,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsapproval-inbound",
+                                    "tileType": "sap.ushell.ui.tile.DynamicTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Approval",
+                                        "targetURL": "#claimsapproval-display",
+                                        "icon": "sap-icon://validate",
+                                        "numberValue": 1,
+                                        "stateArrow": {
+                                            "dataSource": "ZCLAIMAPPROVALSRV",
+                                            "path": "ClaimApproverSet/$count",
+                                            "refresh": 120
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsrequestor-inbound",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Approval - Requestor",
+                                        "targetURL": "#claimsrequestor-display",
+                                        "icon": "sap-icon://validate"
+                                    }
+                                },
+                                {
+                                    "id": "com-cnhi-btp-warrantyclaimsareport-inbound",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Warranty Claims Report",
+                                        "targetURL": "#claimsreport-display",
+                                        "icon": "sap-icon://chart-table-view"
+                                    }
+                                }
+                            ]
+                        }   
+                    ]
+                }
+            }
+        },
+        "NavTargetResolution": {
+            "config": {
+                "enableClientSideTargetResolution": true
+            }
+        },
+        "ClientSideTargetResolution": {
+            "adapter": {
+                "config": {
+                    "inbounds": {
+                        "com-cnhi-btp-warrantyclaimsapproval-inbound": {
+                            "semanticObject": "claimsapproval",
+                            "action": "display",
+                            "title": "Warranty Claims Approval",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "SAPUI5",
+                                "additionalInformation": "SAPUI5.Component=com.cnhi.btp.warrantyclaimsapproval",
+                                "url": "./comcnhibtpwarrantyclaimsapproval/webapp"
+                            },
+                            "indicatorDataSource": {
+                                "dataSource": "ZCLAIMAPPROVALSRV",
+                                "path": "ClaimApproverSet/$count",
+                                "refresh": 120
+                            }
+                        },
+                        "com-cnhi-btp-warrantyclaimsrequestor-inbound": {
+                            "semanticObject": "claimsrequestor",
+                            "action": "display",
+                            "title": "Warranty Claims Approval - Requestor",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            },
+                            "indicatorDataSource": {
+                                "dataSource": "mainService",
+                                "path": "WarrantySet/$count?search=last-week",
+                                "refresh": 120
+                            },                            
+                            "resolutionResult": {
+                                "applicationType": "SAPUI5",
+                                "additionalInformation": "SAPUI5.Component=com.cnhi.btp.warrantyclaimsrequestor",
+                                "url": "./comcnhibtpwarrantyclaimsrequestor/webapp"
+                            }
+                        },
+                        "com-cnhi-btp-warrantyclaimsareport-inbound": {
+                            "semanticObject": "claimsreport",
+                            "action": "display",
+                            "title": "Warranty Claims Report",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "SAPUI5",
+                                "additionalInformation": "SAPUI5.Component=com.cnhi.btp.warrantyclaimsreport",
+                                "url": "./comcnhibtpwarrantyclaimsreport/webapp"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
