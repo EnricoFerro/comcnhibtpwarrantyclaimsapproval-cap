@@ -1,11 +1,31 @@
 sap.ui.define([
     "sap/ui/base/Object",
+    'sap/ui/model/json/JSONModel',
     "sap/m/MessageBox",
+    'sap/m/Dialog',
+    'sap/m/Button',
+    'sap/m/MessageItem',
+	'sap/m/MessageView',
     "sap/ui/core/BusyIndicator"
-], function (UI5Object, MessageBox, BusyIndicator) {
+], function (UI5Object, JSONModel, MessageBox, Dialog, Button,  MessageItem, MessageView, BusyIndicator) {
     "use strict";
 
     return UI5Object.extend("com.cnhi.btp.warrantyclaimsrequestor.controller.ErrorHandler", {
+
+        _mapMessageType(messageTypeSap) {
+            switch (messageTypeSap) {
+                case 'error':
+                    return sap.ui.core.MessageType.Error;
+                case 'warning': 
+                    return sap.ui.core.MessageType.Warning;
+                case 'success': 
+                    return sap.ui.core.MessageType.Success;
+                case 'information': 
+                    return sap.ui.core.MessageType.Information;
+                default:
+                    return sap.ui.core.MessageType.None;
+            }
+        },
 
         /**
         * Handles application errors by automatically attaching to the model events and displaying errors when needed.
@@ -39,7 +59,14 @@ sap.ui.define([
                     }
                 } else {
                     if(sRes && sRes.responseText && JSON.parse(sRes.responseText) && JSON.parse(sRes.responseText).error && JSON.parse(sRes.responseText).error.innererror){
-                        aErrDetails = JSON.parse(sRes.responseText).error.innererror.errordetails;
+                        //Manage the error coming from SAP
+                        var oErrorResponse = JSON.parse(sRes.responseText);
+                        if ( oErrorResponse.error.code === "SY/530" ) {
+                            var oErrorViewMessage = oErrorResponse.error.innererror.errordetails.map(errordetail => ({ type: this._mapMessageType(errordetail.severity), title: errordetail.code, subtitle: errordetail.message }));
+                            return this._showMessageViewError(oErrorViewMessage)
+                        } else {
+                        //Manage other kind of error
+                        aErrDetails = oErrorResponse.error.innererror.errordetails;
                         if(aErrDetails && aErrDetails.length > 0){
                             if(aErrDetails.length === 1){
                                 sDetails = aErrDetails[0].message;       
@@ -47,14 +74,62 @@ sap.ui.define([
                                 sDetails = aErrDetails.find(function(el){ return el.code === ''}) ? aErrDetails.find(function(el){ return el.code === ''}).message : sDetails;   
                             }                   
                         } else {
-                            if(JSON.parse(sRes.responseText).error.message && JSON.parse(sRes.responseText).error.message.value){
-                                sDetails = JSON.parse(sRes.responseText).error.message.value;
+                            if(oErrorResponse.error.message && oErrorResponse.error.message.value){
+                                sDetails = oErrorResponse.error.message.value;
                             }
                         }
+                        }
+
                     }
                 }
                 this._showServiceError(sDetails);
             }, this);
+        },
+
+        _showMessageViewError: function (oMessages) {
+            if (this._bMessageOpen) {
+                return;
+            }
+            this._bMessageOpen = true;
+            var oMessageTemplate = new MessageItem({
+				type: '{type}',
+				title: '{title}',
+				description: '{description}',
+				subtitle: '{subtitle}',
+				counter: '{counter}',
+				markupDescription: '{markupDescription}'
+			});
+
+            this.oMessageView = new MessageView({
+				showDetailsPageHeader: false,
+				itemSelect: function () {
+				},
+				items: {
+					path: "/",
+					template: oMessageTemplate
+				}
+			});
+            var oModel = new JSONModel();
+
+			oModel.setData(oMessages);
+            this.oMessageView.setModel(oModel);
+            this.oDialog = new Dialog({
+				resizable: true,
+				content: this.oMessageView,
+				state: 'Error',
+				beginButton: new Button({
+					press: function () {
+                        this._bMessageOpen = false;
+						this.getParent().close();
+					},
+					text: "Close"
+				}),
+                title: "Error from SAP ERP ",
+				contentHeight: "50%",
+				contentWidth: "50%",
+				verticalScrolling: false
+			});
+            this.oDialog.open();
         },
 
         /**
