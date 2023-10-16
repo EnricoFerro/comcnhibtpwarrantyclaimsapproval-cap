@@ -87,6 +87,7 @@ sap.ui.define([
         },
 
         _showMessageViewError: function (oMessages) {
+            var that = this;
             if (this._bMessageOpen) {
                 return;
             }
@@ -119,7 +120,7 @@ sap.ui.define([
 				state: 'Error',
 				beginButton: new Button({
 					press: function () {
-                        this._bMessageOpen = false;
+                        that._bMessageOpen = false;
 						this.getParent().close();
 					},
 					text: "Close"
