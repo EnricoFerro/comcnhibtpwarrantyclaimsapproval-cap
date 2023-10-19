@@ -109,7 +109,7 @@ sap.ui.define([
 
                     
                     aFilter.push(new Filter({
-                        path: "CreateDate",
+                        path: "SubDate",
                         operator: FilterOperator.BT,
                         value1: oFrmttdFrmDate,
                         value2: oLocalModel.getProperty('/ToDate')
@@ -351,7 +351,7 @@ sap.ui.define([
 
                 
                 aFilter.push(new Filter({
-                    path: "createDate",
+                    path: "subDate",
                     operator: FilterOperator.BT,
                     value1: oFrmttdFrmDate,
                     value2: oLocalModel.getProperty('/ToDate')

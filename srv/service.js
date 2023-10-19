@@ -16,11 +16,11 @@ module.exports = async (srv) => {
     });
 
     dateRanges = [];
-    whereParser = (where) => {
+    whereParser = (who, where) => {
         for (let index = 0; index < where.length; index++) {
             const element = where[index];
             if ( element.ref ) {
-                if ( element.ref[0] === 'createDate' ) {
+                if ( element.ref[0] === who ) {
                     dateRanges.push( {
                         key: where[index].ref[0],
                         operator: where[index+1],
@@ -39,7 +39,7 @@ module.exports = async (srv) => {
                 }
             }
             if (element.xpr) {
-                where[index].xpr = whereParser(element.xpr)
+                where[index].xpr = whereParser(who, element.xpr)
             }
         }
         return where;
@@ -52,17 +52,19 @@ module.exports = async (srv) => {
             /*
              * Remove the createDate from the where
              */
-            req.query.SELECT.where = req.query.SELECT.where ? whereParser(req.query.SELECT.where) : undefined;
+            req.query.SELECT.where = req.query.SELECT.where ? whereParser("subDate", req.query.SELECT.where) : undefined;
             return cds.run(req.query).then(items => {
                 if (req.query.SELECT.one) {
                     /**
                      * Single Line
                      */
                     try {
-                        parsed = JSON.parse(items.claimActualData)
-                        items.createDate = new Date(parsed.CreateDate); 
+                        var parsed = JSON.parse(items.claimActualData)
+                        items.createDate = new Date(parsed.CreateDate);
+                        item.subDate = new Date(parsed.SubDate);  
                     } catch (error) {
                         items.createDate = null;
+                        item.subDate = null;
                     }
                     return items; 
                 } else {
@@ -71,10 +73,12 @@ module.exports = async (srv) => {
                      */
                     items.map(item => {
                         try {
-                            parsed = JSON.parse(item.claimActualData)
+                            var parsed = JSON.parse(item.claimActualData)
                             item.createDate = new Date(parsed.CreateDate); 
+                            item.subDate = new Date(parsed.SubDate); 
                         } catch (error) {
                             item.createDate = null;
+                            item.subDate = null;
                         }
                         return item; 
                     });
@@ -86,18 +90,18 @@ module.exports = async (srv) => {
                         var check = true;
                         for (const iterator of dateRanges) {
                             switch (iterator.operator) {
-                                case '>':   check = check && item.createDate > iterator.date; break;
-                                case '<':   check = check && item.createDate < iterator.date; break;
-                                case '>=':  check = check && item.createDate >= iterator.date; break;
-                                case '<=':  check = check && item.createDate <= iterator.date; break;
-                                case '==':  check = check && item.createDate == iterator.date; break;
-                                case '!=':  check = check && item.createDate != iterator.date; break;
-                                case '===': check = check && item.createDate === iterator.date; break;
-                                case '!==': check = check && item.createDate !== iterator.date; break;
+                                case '>':   check = check && item.subDate > iterator.date; break;
+                                case '<':   check = check && item.subDate < iterator.date; break;
+                                case '>=':  check = check && item.subDate >= iterator.date; break;
+                                case '<=':  check = check && item.subDate <= iterator.date; break;
+                                case '==':  check = check && item.subDate == iterator.date; break;
+                                case '!=':  check = check && item.subDate != iterator.date; break;
+                                case '===': check = check && item.subDate === iterator.date; break;
+                                case '!==': check = check && item.subDate !== iterator.date; break;
                                 default:   check = false; break;
                             }
                         }
-                        return check;
+                        return check; 
                     });
                 }
             });
