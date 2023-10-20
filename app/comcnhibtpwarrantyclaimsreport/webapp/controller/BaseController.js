@@ -344,17 +344,31 @@ sap.ui.define([
                 });
 
                 var oFrmDateYr = oLocalModel.getProperty('/FromDate').getFullYear();
+                var oFrmDateMnth = oLocalModel.getProperty('/FromDate').getMonth();
+                var oFrmDateDate = oLocalModel.getProperty('/FromDate').getDate();
+                var oFrmttdFrmDate = new Date(Date.UTC(oFrmDateYr, oFrmDateMnth, oFrmDateDate, 0, 0 , 0));
+                oFrmttdFrmDate.setDate(oFrmttdFrmDate.getDate());
+
+                var oToDateYr = oLocalModel.getProperty('/ToDate').getFullYear();
+                var oToDateMnth = oLocalModel.getProperty('/ToDate').getMonth();
+                var oToDateDate = oLocalModel.getProperty('/ToDate').getDate();
+                var oFrmttToDate = new Date(Date.UTC(oToDateYr, oToDateMnth, oToDateDate, 23, 59 , 59));
+                oFrmttToDate.setDate(oFrmttToDate.getDate());
+                
+                /*
+                var oFrmDateYr = oLocalModel.getProperty('/FromDate').getFullYear();
                 var oFrmDateMnth = oLocalModel.getProperty('/FromDate').getMonth() + 1;
                 var oFrmDateDate = oLocalModel.getProperty('/FromDate').getDate();
                 var oFrmttdFrmDate = new Date([oFrmDateYr, oFrmDateMnth, oFrmDateDate].join('-'));
                 oFrmttdFrmDate.setDate(oFrmttdFrmDate.getDate());
+                */
 
                 
                 aFilter.push(new Filter({
                     path: "subDate",
                     operator: FilterOperator.BT,
                     value1: oFrmttdFrmDate,
-                    value2: oLocalModel.getProperty('/ToDate')
+                    value2: oFrmttToDate//oLocalModel.getProperty('/ToDate')
                 }));
             } 
             return aFilter;
