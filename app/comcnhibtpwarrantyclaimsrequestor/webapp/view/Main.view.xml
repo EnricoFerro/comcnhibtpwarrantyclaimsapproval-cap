@@ -28,7 +28,15 @@
                         <!--<smartMultiInput:SmartMultiInput id="Main_SMI_Clmno" value="{LocalModel>Clmno}" change="onRefresh" entitySet="WarrantySet" supportRanges="true"  mandatory="false" textLabel="{i18n>selectClmno}"/>-->
                         <Label text="{i18n>selectRange}:" visible="{LocalModel>/IsRequestorLoggedIn}" />
                         <DateRangeSelection class="sapUiTinyMarginBegin" visible="{LocalModel>/IsRequestorLoggedIn}"
-                                id="Main_DRS" dateValue="{LocalModel>/FromDate}" secondDateValue="{LocalModel>/ToDate}" showCurrentDateButton="true" showFooter="true" width="auto"
+                                id="Main_DRS" dateValue="{
+                                    path: 'LocalModel>/FromDate',
+                                    type: 'DateTimeOffset',
+                                    formatOptions: { strictParsing: true , UTC: true }
+                                  }" secondDateValue="{
+                                    path: 'LocalModel>/ToDate',
+                                    type: 'DateTimeOffset',
+                                    formatOptions: {  strictParsing: true , UTC: true }
+                                  }" showCurrentDateButton="true" showFooter="true" width="auto"
                                 change="onRefresh"/>
                         <ToolbarSeparator  visible="{= !(${device>/system/phone} === true || ${LocalModel>/IsRequestorLoggedIn} === false) }"/>
                         <OverflowToolbarButton icon="sap-icon://refresh" type="Transparent" tooltip="{i18n>refreshList}" press="onRefresh" />

@@ -21,7 +21,7 @@
                 "type": "OData",
                 "settings": {
                     "annotations": [],
-                    "localUri": "localService/metadata.xml",
+                    "localUri": "localService/sap_metadata.xml",
                     "odataVersion": "2.0"
                 }
             },

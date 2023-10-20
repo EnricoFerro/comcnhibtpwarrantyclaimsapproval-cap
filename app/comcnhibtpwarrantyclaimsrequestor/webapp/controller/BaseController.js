@@ -70,21 +70,22 @@ sap.ui.define([
                 var oLocalModel = that.getModel('LocalModel');
                 var oDataModel = that.getModel();
                 if (claimId == undefined || claimId == null) {
-                    var oDateTimeInstance = sap.ui.core.format.DateFormat.getDateTimeInstance({
-                        formatOptions: { UTC: true }
-                    });
-                    var oFrmDateYr = oLocalModel.getProperty('/FromDate').getFullYear();
-                    var oFrmDateMnth = oLocalModel.getProperty('/FromDate').getMonth() + 1;
-                    var oFrmDateDate = oLocalModel.getProperty('/FromDate').getDate();
-                    var oFrmttdFrmDate = new Date([oFrmDateYr, oFrmDateMnth, oFrmDateDate].join('-'));
-                    oFrmttdFrmDate.setDate(oFrmttdFrmDate.getDate());
 
+                    var oFrmDateYr = oLocalModel.getProperty('/FromDate').getFullYear();
+                    var oFrmDateMnth = oLocalModel.getProperty('/FromDate').getMonth();
+                    var oFrmDateDate = oLocalModel.getProperty('/FromDate').getDate();
+                    var oFrmttdFrmDate = new Date(Date.UTC(oFrmDateYr, oFrmDateMnth, oFrmDateDate, 0, 0 , 0));
+
+                    var oToDateYr = oLocalModel.getProperty('/ToDate').getFullYear();
+                    var oToDateMnth = oLocalModel.getProperty('/ToDate').getMonth();
+                    var oToDateDate = oLocalModel.getProperty('/ToDate').getDate();
+                    var oFrmttToDate = new Date(Date.UTC(oToDateYr, oToDateMnth, oToDateDate, 23, 59 , 59));
                     
                     aFilter.push(new Filter({
                         path: "CreateDate",
                         operator: FilterOperator.BT,
-                        value1: oFrmttdFrmDate,
-                        value2: oLocalModel.getProperty('/ToDate')
+                        value1:  oFrmttdFrmDate,
+                        value2: oFrmttToDate
                     }));
                 } else {
                     if (Array.isArray(claimId)) {

@@ -71,6 +71,7 @@ entity ClaimReport {
         currentLevel    : Integer;
         requestor       : String;
         createDate      : DateTime;
+        subDate         : DateTime;
         sequence        : array of {
                             name: String;
                             email: String;
