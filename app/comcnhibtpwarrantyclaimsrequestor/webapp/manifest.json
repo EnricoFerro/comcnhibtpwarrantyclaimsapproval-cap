@@ -111,8 +111,7 @@
                     "defaultBindingMode": "TwoWay",
                     "defaultUpdateMethod": "PUT",
                     "defaultCountMode": "Inline",
-                    "refreshAfterChange": false,
-                    "useBatch": false
+                    "refreshAfterChange": false
                 }
               },
             "LocalModel": {
