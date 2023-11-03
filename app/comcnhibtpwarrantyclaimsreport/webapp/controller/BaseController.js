@@ -491,7 +491,7 @@ sap.ui.define([
             var oLocalModel = this.getOwnerComponent().getModel('LocalModel'),
                 oCAPMMOdelv2 = this.getOwnerComponent().getModel('ClaimApprovalCAPV2'),  
                 aFilters = [];
-            var claimIds = claimFilter.claimId ? claimFilter.claimId : [];
+            var claimIds = claimFilter.claimNo ? claimFilter.claimNo : [];
             var IDs = claimFilter.id ? claimFilter.IDs : [];
             aFilters = this.getIDFilter(aFilters, IDs);
             aFilters = this.getClaimNoFilter(aFilters, claimIds);
